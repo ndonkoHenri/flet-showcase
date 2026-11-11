@@ -6,9 +6,10 @@ on-device AI. Flet lets you build web, desktop and mobile apps in Python, with n
 Every folder is one app you can read in a few minutes and run with a single command. Its README shows the app
 running and links to the docs for everything it uses.
 
-|                                                                      | App                                                 | What it shows                                        |
-|----------------------------------------------------------------------|-----------------------------------------------------|------------------------------------------------------|
-| <img src=".media/notification-actions/thumb.png" width="120" alt=""> | [Notification action buttons](notification-actions) | Buttons in a notification that call your Python code |
+|                                                                      | App                                                 | What it shows                                                           |
+|----------------------------------------------------------------------|-----------------------------------------------------|-------------------------------------------------------------------------|
+| <img src=".media/pull-to-refresh/thumb.png" width="120" alt="">      | [Pull to refresh](pull-to-refresh)                  | Pull a list down to load new items; a Refresh button on desktop and web |
+| <img src=".media/notification-actions/thumb.png" width="120" alt=""> | [Notification action buttons](notification-actions) | Buttons in a notification that call your Python code                    |
 
 ## Run an app
 
@@ -16,7 +17,7 @@ Install [uv](https://docs.astral.sh/uv/), then:
 
 ```bash
 git clone https://github.com/ndonkoHenri/flet-showcase
-cd flet-showcase/notification-actions   # choose and open an example
+cd flet-showcase/pull-to-refresh   # choose and open an example
 uv run flet run
 ```
 

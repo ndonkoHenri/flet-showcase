@@ -1,0 +1,15 @@
+[project]
+name = "pull-to-refresh"
+version = "1.0.0"
+description = "An inbox that loads new messages when you pull it down, or click Refresh on desktop and web."
+requires-python = ">=3.10"
+dependencies = [
+    "flet==1.1.2"
+]
+
+[dependency-groups]
+dev = ["flet-cli==1.1.2", "flet-desktop==1.1.2", "flet-web==1.1.2"]
+
+[tool.flet]
+org = "com.example"
+product = "Pull to Refresh"
