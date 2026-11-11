@@ -46,7 +46,7 @@ async def main(page: ft.Page):
 
     notifications = ftn.Notifications(on_action=handle_action)
 
-    async def send_notification(e=None):
+    async def send_notification(e: ft.Event[ft.FilledButton] = None):
         """Shows the task's notification with its Snooze and Mark done buttons."""
         snooze = ftn.NotificationAction(id="snooze", title="Snooze")
         done = ftn.NotificationAction(id="done", title="Mark done")

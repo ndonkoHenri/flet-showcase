@@ -3,7 +3,10 @@ name = "notification-actions"
 version = "1.0.0"
 description = "A to-do item you can finish, or snooze, from its notification's buttons."
 requires-python = ">=3.10"
-dependencies = ["flet==1.1.2", "flet-notifications==1.1.2"]
+dependencies = [
+    "flet==1.1.2",
+    "flet-notifications==1.1.2"
+]
 
 [dependency-groups]
 dev = ["flet-cli==1.1.2", "flet-desktop==1.1.2", "flet-web==1.1.2"]

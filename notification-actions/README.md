@@ -23,21 +23,25 @@ uv run flet run           # desktop
 uv run flet run --web     # browser
 ```
 
-On your phone, [debug](https://flet.dev/docs/cli/flet-debug) the app on a connected device or emulator, or
-[build](https://flet.dev/docs/publish) an installable package:
+To try it on a phone, [debug](https://flet.dev/docs/cli/flet-debug) it on a connected device or emulator:
 
 ```bash
-uv run flet debug android   # run it on a connected Android device or emulator
-uv run flet debug ios       # run it on a connected iPhone or simulator
+uv run flet debug android   # Android device or emulator
+uv run flet debug ios       # iPhone or iOS simulator
+```
 
-uv run flet build apk       # Android package
-uv run flet build ipa       # iOS package
+To share it, [build](https://flet.dev/docs/publish) a package for any platform (desktop apps build on their own OS):
+
+```bash
+uv run flet build apk       # Android
+uv run flet build ipa       # iOS
+uv run flet build macos     # macOS app
+uv run flet build windows   # Windows app
+uv run flet build linux     # Linux app
+uv run flet build web       # static website
 ```
 
 ## Learn more
 
 - [Notifications docs](https://flet.dev/docs/services/notifications)
-- [`NotificationAction`](https://flet.dev/docs/services/notifications/types/notificationaction): every option a button has, such as
-  [`foreground`](https://flet.dev/docs/services/notifications/types/notificationaction#flet_notifications.NotificationAction.foreground) (open the app or stay in the background),
-  [`cancel_notification`](https://flet.dev/docs/services/notifications/types/notificationaction#flet_notifications.NotificationAction.cancel_notification), [`destructive`](https://flet.dev/docs/services/notifications/types/notificationaction#flet_notifications.NotificationAction.destructive),
-  [`require_authentication`](https://flet.dev/docs/services/notifications/types/notificationaction#flet_notifications.NotificationAction.require_authentication) and [`input`](https://flet.dev/docs/services/notifications/types/notificationaction#flet_notifications.NotificationAction.input) (inline reply)
+- [`NotificationAction`](https://flet.dev/docs/services/notifications/types/notificationaction): every option a notification button has
