@@ -1,0 +1,16 @@
+[project]
+name = "iss-tracker"
+version = "1.0.0"
+description = "The International Space Station live on a map: its position every second, its trail, speed and altitude."
+requires-python = ">=3.10"
+dependencies = [
+    "flet==1.1.2",
+    "flet-map==1.1.2"
+]
+
+[dependency-groups]
+dev = ["flet-cli==1.1.2", "flet-desktop==1.1.2", "flet-web==1.1.2"]
+
+[tool.flet]
+org = "com.example"
+product = "ISS Tracker"
