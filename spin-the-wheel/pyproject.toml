@@ -1,0 +1,17 @@
+[project]
+name = "spin-the-wheel"
+version = "1.0.0"
+description = "Spin a wheel of names to pick who pays for coffee, with ticks made in Python."
+requires-python = ">=3.11"
+dependencies = [
+    "flet==1.1.2",
+    "flet-audio==1.1.2",
+    "numpy==2.4.6"
+]
+
+[dependency-groups]
+dev = ["flet-cli==1.1.2", "flet-desktop==1.1.2", "flet-web==1.1.2"]
+
+[tool.flet]
+org = "com.example"
+product = "Coffee wheel"
