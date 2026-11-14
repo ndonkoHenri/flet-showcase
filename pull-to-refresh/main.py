@@ -19,21 +19,14 @@ NEW_MESSAGES = [
 ]
 
 
-def message_tile(sender, text, color, unread=False):
+def message_tile(sender: str, text: str, color: str, unread: bool = False) -> ft.ListTile:
     """One inbox row: the sender's initial, name and message, with a dot if unread."""
+    dot = ft.Container(width=10, height=10, border_radius=5, bgcolor=ft.Colors.PINK)
     return ft.ListTile(
-        leading=ft.CircleAvatar(
-            content=ft.Text(sender[0]), bgcolor=color, color=ft.Colors.WHITE
-        ),
-        title=ft.Text(
-            sender, weight=ft.FontWeight.W_700 if unread else ft.FontWeight.W_500
-        ),
+        leading=ft.CircleAvatar(content=ft.Text(sender[0]), bgcolor=color, color=ft.Colors.WHITE),
+        title=ft.Text(sender, weight=ft.FontWeight.W_700 if unread else ft.FontWeight.W_500),
         subtitle=ft.Text(text),
-        trailing=ft.Container(
-            width=10, height=10, border_radius=5, bgcolor=ft.Colors.PINK
-        )
-        if unread
-        else None,
+        trailing=dot if unread else None,
     )
 
 
@@ -43,10 +36,7 @@ async def main(page: ft.Page):
 
     # Pulling is a touch gesture: mouse drags and the mouse wheel don't start it.
     # So desktop and web also get a Refresh button.
-    is_phone = not page.web and page.platform in (
-        ft.PagePlatform.ANDROID,
-        ft.PagePlatform.IOS,
-    )
+    is_phone = not page.web and page.platform in (ft.PagePlatform.ANDROID, ft.PagePlatform.IOS)
     received = 0
 
     async def fetch_message():
@@ -100,11 +90,7 @@ async def main(page: ft.Page):
                     indicator := ft.RefreshIndicator(
                         expand=True,
                         on_refresh=handle_refresh,
-                        content=(
-                            inbox := ft.ListView(
-                                controls=[message_tile(*m) for m in INBOX]
-                            )
-                        ),
+                        content=(inbox := ft.ListView(controls=[message_tile(*m) for m in INBOX])),
                     ),
                 ],
             ),

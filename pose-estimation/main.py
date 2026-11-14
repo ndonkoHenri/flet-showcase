@@ -53,6 +53,7 @@ ANGLES = [  # (name, a, b, c, color): the angle at b, between b-a and b-c
     ("Right knee", 12, 14, 16, RIGHT),
 ]
 SEEN = 0.3  # a point counts when the model's score is above this
+ABOUT_MODEL = "MoveNet Lightning, 9.4 MB, on device"
 ACCENT, INK, MUTED, CARD, DARK = "#E00050", "#1B1A22", "#6B6A78", "#F4F3F8", "#0B0A10"
 
 
@@ -94,8 +95,7 @@ def decode(data: bytes, crop=(0.0, 0.0, 1.0, 1.0)) -> tuple[np.ndarray, bytes]:
 def load() -> tuple[ort.InferenceSession, list[tuple[np.ndarray, bytes]]]:
     """The model and the sample photos, downloaded on the first launch."""
     model = ort.InferenceSession(
-        fetch(MODEL_URL, "movenet-lightning.onnx", MODEL_SIZE),
-        providers=["CPUExecutionProvider"],
+        fetch(MODEL_URL, "movenet-lightning.onnx", MODEL_SIZE), providers=["CPUExecutionProvider"]
     )
     samples = []
     for name, url, crop in SAMPLES:
@@ -117,6 +117,11 @@ def find_pose(model: ort.InferenceSession, photo: np.ndarray) -> list[tuple]:
     return [(x * side - left, y * side - top, s) for y, x, s in points.tolist()]
 
 
+def seen(points: list[tuple]) -> list[int]:
+    """The points the model is sure enough about."""
+    return [k for k, (_, _, score) in enumerate(points) if score > SEEN]
+
+
 def angle(points: list[tuple], a: int, b: int, c: int) -> float | None:
     """The angle at point b in degrees, or None when one of the points isn't seen."""
     if min(points[a][2], points[b][2], points[c][2]) <= SEEN:
@@ -125,6 +130,48 @@ def angle(points: list[tuple], a: int, b: int, c: int) -> float | None:
     v2 = (points[c][0] - points[b][0], points[c][1] - points[b][1])
     cos = (v1[0] * v2[0] + v1[1] * v2[1]) / (math.hypot(*v1) * math.hypot(*v2) + 1e-6)
     return math.degrees(math.acos(max(-1.0, min(1.0, cos))))
+
+
+def angle_tile(name: str, color: str, value: ft.Text) -> ft.Container:
+    """A small card: a colored dot, the joint's name, and its angle below."""
+    return ft.Container(
+        expand=True,
+        bgcolor=CARD,
+        border_radius=16,
+        padding=ft.Padding.symmetric(horizontal=14, vertical=10),
+        content=ft.Column(
+            spacing=0,
+            controls=[
+                ft.Row(
+                    spacing=6,
+                    controls=[
+                        ft.Container(width=10, height=10, border_radius=5, bgcolor=color),
+                        ft.Text(name, size=14, weight=ft.FontWeight.W_600, color=MUTED),
+                    ],
+                ),
+                value,
+            ],
+        ),
+    )
+
+
+def badge() -> ft.Container:
+    """The "17 pts" pill on a photo tile, shown once its photo is read."""
+    return ft.Container(
+        right=6,
+        bottom=6,
+        visible=False,
+        padding=ft.Padding.symmetric(vertical=2, horizontal=8),
+        border_radius=10,
+        bgcolor=ACCENT,
+        content=ft.Text("", size=13, weight=ft.FontWeight.W_800, color="white"),
+    )
+
+
+def cover(control: ft.Control) -> ft.Control:
+    """The control, stretched over the whole Stack it's in."""
+    control.left, control.top, control.right, control.bottom = 0, 0, 0, 0
+    return control
 
 
 async def main(page: ft.Page):
@@ -136,7 +183,6 @@ async def main(page: ft.Page):
     W = min(page.width or 400, 500) - 36  # the photo card's size
     H = round(W * 0.75)
 
-    message = ft.Text("Downloading the model (9.4 MB)...", size=17, color=MUTED)
     page.add(
         ft.SafeArea(
             expand=True,
@@ -147,7 +193,12 @@ async def main(page: ft.Page):
                     tight=True,
                     spacing=16,
                     horizontal_alignment=ft.CrossAxisAlignment.CENTER,
-                    controls=[ft.ProgressRing(color=ACCENT), message],
+                    controls=[
+                        ft.ProgressRing(color=ACCENT),
+                        message := ft.Text(
+                            "Downloading the model (9.4 MB)...", size=17, color=MUTED
+                        ),
+                    ],
                 ),
             ),
         )
@@ -164,53 +215,14 @@ async def main(page: ft.Page):
     file_picker = ft.FilePicker()
     busy = {"now": False}
 
-    photo_view = ft.Image(
-        src=photos[0][1], fit=ft.BoxFit.CONTAIN, left=0, top=0, right=0, bottom=0
-    )
-    # The canvas covers the photo; its real size can differ from W x H (a narrow
-    # window squeezes the card), so the skeleton is placed with the size it reports.
-    canvas = cv.Canvas(left=0, top=0, right=0, bottom=0)
     shown = {"size": (W, H), "points": None, "photo": None}  # what the canvas shows
-    status_icon = ft.Icon(ft.Icons.ACCESSIBILITY_NEW, color=ACCENT, size=30)
-    status = ft.Text("Ready", size=19, weight=ft.FontWeight.W_800, color=INK)
-    detail = ft.Text("MoveNet Lightning, 9.4 MB, on device", size=14, color=MUTED)
 
-    angle_values = []
-    angle_tiles = []
-    for name, *_, color in ANGLES:
-        angle_values.append(
-            value := ft.Text("–", size=26, weight=ft.FontWeight.W_900, color=INK)
-        )
-        angle_tiles.append(
-            ft.Container(
-                expand=True,
-                bgcolor=CARD,
-                border_radius=16,
-                padding=ft.Padding.symmetric(horizontal=14, vertical=10),
-                content=ft.Column(
-                    spacing=0,
-                    controls=[
-                        ft.Row(
-                            spacing=6,
-                            controls=[
-                                ft.Container(
-                                    width=10, height=10, border_radius=5, bgcolor=color
-                                ),
-                                ft.Text(
-                                    name,
-                                    size=14,
-                                    weight=ft.FontWeight.W_600,
-                                    color=MUTED,
-                                ),
-                            ],
-                        ),
-                        value,
-                    ],
-                ),
-            )
-        )
+    angle_values = [ft.Text("–", size=26, weight=ft.FontWeight.W_900, color=INK) for _ in ANGLES]
+    angle_tiles = [
+        angle_tile(name, color, value) for (name, *_, color), value in zip(ANGLES, angle_values)
+    ]
 
-    def thumb(i: int, content: ft.Control) -> ft.Container:
+    def thumb(i: int, layers: list[ft.Control]) -> ft.Container:
         """A tile under the angles: a sample photo, or "Your photo"."""
         return ft.Container(
             data=i,
@@ -221,51 +233,28 @@ async def main(page: ft.Page):
             bgcolor=DARK if i < len(SAMPLES) else CARD,
             border=ft.Border.all(3, ft.Colors.TRANSPARENT),
             on_click=handle_thumb_click,
-            content=content,
+            content=ft.Stack(expand=True, controls=layers),
         )
 
-    badges = []  # the "17 pts" pill on each tile, shown after its photo is read
-    tile_photos = []  # the photo filling each tile
-    for i in range(len(SAMPLES) + 1):
-        badges.append(
-            ft.Container(
-                right=6,
-                bottom=6,
-                visible=False,
-                padding=ft.Padding.symmetric(vertical=2, horizontal=8),
-                border_radius=10,
-                bgcolor=ACCENT,
-                content=ft.Text("", size=13, weight=ft.FontWeight.W_800, color="white"),
-            )
-        )
-        tile_photos.append(
-            ft.Image(
-                src=photos[min(i, len(SAMPLES) - 1)][1],  # the last tile's comes later
-                visible=i < len(SAMPLES),
-                fit=ft.BoxFit.COVER,
-                left=0,
-                top=0,
-                right=0,
-                bottom=0,
-            )
-        )
-    add_photo = ft.Container(
-        left=0,
-        top=0,
-        right=0,
-        bottom=0,
-        content=ft.Column(
+    badges = [badge() for _ in range(len(SAMPLES) + 1)]  # one per tile
+    tile_photos = [  # the photo filling each tile; the last one comes from the user
+        cover(ft.Image(src=jpg, fit=ft.BoxFit.COVER)) for _, jpg in photos
+    ] + [cover(ft.Image(src=photos[0][1], fit=ft.BoxFit.COVER, visible=False))]
+    add_photo = cover(
+        ft.Column(
             alignment=ft.MainAxisAlignment.CENTER,
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
             spacing=4,
             controls=[
                 ft.Icon(ft.Icons.ADD_PHOTO_ALTERNATE_OUTLINED, color=ACCENT, size=30),
-                ft.Text(
-                    "Your photo", size=13, weight=ft.FontWeight.W_700, color=ACCENT
-                ),
+                ft.Text("Your photo", size=13, weight=ft.FontWeight.W_700, color=ACCENT),
             ],
-        ),
+        )
     )
+
+    def show_status(icon: ft.IconData, title: str, text: str = ABOUT_MODEL):
+        """The status card: an icon, a title and a line under it."""
+        status_icon.icon, status.value, detail.value = icon, title, text
 
     async def draw_skeleton(animate: bool):
         """Draw the shown points and the bones between them over the photo."""
@@ -279,15 +268,13 @@ async def main(page: ft.Page):
             """Point k on the canvas."""
             return points[k][0] * s + ox, points[k][1] * s + oy
 
-        seen = [k for k in range(17) if points[k][2] > SEEN]
-        canvas.shapes = [
-            cv.Circle(*xy(k), 6, paint=ft.Paint(color="white")) for k in seen
-        ]
+        found = seen(points)
+        canvas.shapes = [cv.Circle(*xy(k), 6, paint=ft.Paint(color="white")) for k in found]
         if animate:
             canvas.update()
             await asyncio.sleep(0.15)
         for a, b, color in BONES:  # one bone at a time: the skeleton draws itself
-            if a in seen and b in seen:
+            if a in found and b in found:
                 canvas.shapes.append(
                     cv.Line(
                         *xy(a),
@@ -303,7 +290,7 @@ async def main(page: ft.Page):
                 if animate:
                     canvas.update()
                     await asyncio.sleep(0.04)
-        for k in seen:  # dots on top of the bones
+        for k in found:  # dots on top of the bones
             canvas.shapes.append(cv.Circle(*xy(k), 3.5, paint=ft.Paint(color=INK)))
         canvas.update()
 
@@ -311,8 +298,6 @@ async def main(page: ft.Page):
         shown["size"] = (e.width, e.height)
         if shown["points"] is not None and not busy["now"]:
             await draw_skeleton(animate=False)  # keep the skeleton on the person
-
-    canvas.on_resize = handle_canvas_resize
 
     async def analyze(i: int):
         """Show photo i, find its pose, then draw the skeleton and fill in the angles."""
@@ -322,9 +307,7 @@ async def main(page: ft.Page):
         canvas.shapes.clear()
         for j, tile in enumerate(tiles):
             tile.border = ft.Border.all(3, ACCENT if j == i else ft.Colors.TRANSPARENT)
-        status_icon.icon = ft.Icons.SEARCH
-        status.value = "Finding the pose..."
-        detail.value = "MoveNet Lightning, 9.4 MB, on device"
+        show_status(ft.Icons.SEARCH, "Finding the pose...")
         for value in angle_values:
             value.value = "–"
         page.update()
@@ -335,14 +318,16 @@ async def main(page: ft.Page):
         shown["points"], shown["photo"] = points, img
         await draw_skeleton(animate=True)
 
-        seen = [k for k in range(17) if points[k][2] > SEEN]
-        status_icon.icon = ft.Icons.CHECK_CIRCLE if seen else ft.Icons.PERSON_OFF
-        status.value = f"{len(seen)} of 17 body points"
-        detail.value = "Found by MoveNet, drawn on a canvas"
+        found = len(seen(points))
+        show_status(
+            ft.Icons.CHECK_CIRCLE if found else ft.Icons.PERSON_OFF,
+            f"{found} of 17 body points",
+            "Found by MoveNet, drawn on a canvas",
+        )
         for value, (_, a, b, c, _) in zip(angle_values, ANGLES):
             degrees = angle(points, a, b, c)
             value.value = "–" if degrees is None else f"{degrees:.0f}°"
-        badges[i].content.value = f"{len(seen)} pts"
+        badges[i].content.value = f"{found} pts"
         badges[i].visible = True
         page.update()
 
@@ -357,9 +342,7 @@ async def main(page: ft.Page):
         try:
             photo = decode(files[0].bytes)
         except ValueError:
-            status_icon.icon = ft.Icons.ERROR_OUTLINE
-            status.value = "Can't read that file"
-            detail.value = "Try a JPEG or PNG photo"
+            show_status(ft.Icons.ERROR_OUTLINE, "Can't read that file", "Try a JPEG or PNG photo")
             page.update()
             return False
         photos[len(SAMPLES) :] = [photo]  # replaces the previous one, if any
@@ -378,12 +361,8 @@ async def main(page: ft.Page):
         finally:
             busy["now"] = False
 
-    tiles = []
-    for i in range(len(SAMPLES) + 1):
-        layers = [tile_photos[i], badges[i]]
-        if i == len(SAMPLES):
-            layers.insert(1, add_photo)
-        tiles.append(thumb(i, ft.Stack(expand=True, controls=layers)))
+    tiles = [thumb(i, [tile_photos[i], badges[i]]) for i in range(len(SAMPLES))]
+    tiles.append(thumb(len(SAMPLES), [tile_photos[-1], add_photo, badges[-1]]))
 
     page.add(
         ft.SafeArea(
@@ -398,16 +377,10 @@ async def main(page: ft.Page):
                         controls=[
                             ft.Container(height=8),
                             ft.Text(
-                                "ON-DEVICE AI",
-                                size=13,
-                                weight=ft.FontWeight.W_800,
-                                color=ACCENT,
+                                "ON-DEVICE AI", size=13, weight=ft.FontWeight.W_800, color=ACCENT
                             ),
                             ft.Text(
-                                "Strike a pose",
-                                size=28,
-                                weight=ft.FontWeight.W_900,
-                                color=INK,
+                                "Strike a pose", size=28, weight=ft.FontWeight.W_900, color=INK
                             ),
                         ],
                     ),
@@ -417,7 +390,16 @@ async def main(page: ft.Page):
                         border_radius=22,
                         bgcolor=DARK,
                         clip_behavior=ft.ClipBehavior.ANTI_ALIAS,
-                        content=ft.Stack(controls=[photo_view, canvas]),
+                        content=ft.Stack(
+                            controls=[
+                                photo_view := cover(
+                                    ft.Image(src=photos[0][1], fit=ft.BoxFit.CONTAIN)
+                                ),
+                                # Covers the photo. Its real size can differ from W x H (a narrow
+                                # window squeezes the card): the skeleton uses the size it reports.
+                                canvas := cover(cv.Canvas(on_resize=handle_canvas_resize)),
+                            ]
+                        ),
                     ),
                     ft.Container(
                         bgcolor=CARD,
@@ -426,9 +408,18 @@ async def main(page: ft.Page):
                         content=ft.Row(
                             spacing=14,
                             controls=[
-                                status_icon,
+                                status_icon := ft.Icon(
+                                    ft.Icons.ACCESSIBILITY_NEW, color=ACCENT, size=30
+                                ),
                                 ft.Column(
-                                    spacing=0, expand=True, controls=[status, detail]
+                                    spacing=0,
+                                    expand=True,
+                                    controls=[
+                                        status := ft.Text(
+                                            "Ready", size=19, weight=ft.FontWeight.W_800, color=INK
+                                        ),
+                                        detail := ft.Text(ABOUT_MODEL, size=14, color=MUTED),
+                                    ],
                                 ),
                             ],
                         ),

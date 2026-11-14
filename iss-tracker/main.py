@@ -10,6 +10,7 @@ API = "/v1/satellites/25544"  # 25544 is the ISS's catalog number
 ACCENT, INK, MUTED, RED = "#4F46E5", "#14131C", "#6B6A78", "#DC2626"
 CLOSE, WORLD = 7.0, 1.5  # map zoom when following the station / showing the trail
 LL = ftm.MapLatitudeLongitude
+UNIT = ft.TextStyle(size=15, weight=ft.FontWeight.W_700, color=MUTED)  # "km/h", "km"
 
 # One kept-alive HTTPS connection: a new TLS handshake for every request can take
 # seconds, which would make the station jump instead of moving every second.
@@ -41,10 +42,7 @@ def stat(label: str, value: ft.Text) -> ft.Column:
     return ft.Column(
         spacing=0,
         expand=True,
-        controls=[
-            ft.Text(label, size=12, weight=ft.FontWeight.W_800, color=MUTED),
-            value,
-        ],
+        controls=[ft.Text(label, size=12, weight=ft.FontWeight.W_800, color=MUTED), value],
     )
 
 
@@ -72,6 +70,37 @@ def floating_card(top: bool, controls: list[ft.Control]) -> ft.Container:
     )
 
 
+def add_point(trail: ftm.PolylineLayer, lat: float, lon: float):
+    """Grow the trail; where it crosses the 180° line, end it there and start anew."""
+    line = trail.polylines[-1] if trail.polylines else None
+    if line and abs(lon - line.coordinates[-1].longitude) <= 180:
+        line.coordinates = line.coordinates + [LL(lat, lon)]
+        return
+    start = []
+    if line:  # where the trail meets the 180° line
+        prev = line.coordinates[-1]
+        edge = 180 if prev.longitude > 0 else -180
+        share = (edge - prev.longitude) / (lon + 2 * edge - prev.longitude)
+        cross = prev.latitude + (lat - prev.latitude) * share
+        line.coordinates = line.coordinates + [LL(cross, edge)]
+        start = [LL(cross, -edge)]
+    trail.polylines.append(
+        ftm.PolylineMarker(
+            coordinates=start + [LL(lat, lon)],
+            color=ACCENT,
+            stroke_width=5,
+            border_color=ft.Colors.WHITE,
+            border_stroke_width=2,
+        )
+    )
+
+
+def overview(trail: ftm.PolylineLayer) -> ftm.MapLatitudeLongitude:
+    """The middle of the trail, so all of it fits on screen."""
+    points = [p for line in trail.polylines for p in line.coordinates]
+    return points[len(points) // 2]
+
+
 async def main(page: ft.Page):
     page.title = "ISS tracker"
     page.padding = 0
@@ -85,78 +114,27 @@ async def main(page: ft.Page):
     state = {"follow": False, "flying_until": 0.0, "online": True, "closed": False}
 
     trail = ftm.PolylineLayer(polylines=[])
-    station = ftm.Marker(
-        coordinates=LL(0, 0),
-        width=48,
-        height=48,
-        visible=False,
-        content=ft.Container(
-            border_radius=24,
-            bgcolor=ft.Colors.WHITE,
-            border=ft.Border.all(3, ACCENT),
-            alignment=ft.Alignment.CENTER,
-            content=ft.Icon(ft.Icons.SATELLITE_ALT, color=ACCENT, size=26),
-        ),
-    )
-
-    def add_point(lat: float, lon: float):
-        """Grow the trail; where it crosses the 180° line, end it there and start anew."""
-        line = trail.polylines[-1] if trail.polylines else None
-        if line and abs(lon - line.coordinates[-1].longitude) <= 180:
-            line.coordinates = line.coordinates + [LL(lat, lon)]
-            return
-        start = []
-        if line:  # where the trail meets the 180° line
-            prev = line.coordinates[-1]
-            edge = 180 if prev.longitude > 0 else -180
-            share = (edge - prev.longitude) / (lon + 2 * edge - prev.longitude)
-            cross = prev.latitude + (lat - prev.latitude) * share
-            line.coordinates = line.coordinates + [LL(cross, edge)]
-            start = [LL(cross, -edge)]
-        trail.polylines.append(
-            ftm.PolylineMarker(
-                coordinates=start + [LL(lat, lon)],
-                color=ACCENT,
-                stroke_width=5,
-                border_color=ft.Colors.WHITE,
-                border_stroke_width=2,
-            )
-        )
-
-    unit = ft.TextStyle(size=15, weight=ft.FontWeight.W_700, color=MUTED)
-    speed = ft.Text("--", size=24, weight=ft.FontWeight.W_900, color=INK, no_wrap=True)
-    altitude = ft.Text(
-        "--", size=24, weight=ft.FontWeight.W_900, color=INK, no_wrap=True
-    )
-    position = ft.Text("--", size=16, weight=ft.FontWeight.W_700, color=INK)
-    flown = ft.Text("0 km", size=16, weight=ft.FontWeight.W_700, color=ACCENT)
-    status = ft.Text(size=13, weight=ft.FontWeight.W_600, color=MUTED)
 
     def show(iss: dict):
         """Move the marker, grow the trail and update the numbers."""
         lat, lon = iss["latitude"], iss["longitude"]
         station.coordinates, station.visible = LL(lat, lon), True
-        add_point(lat, lon)
+        add_point(trail, lat, lon)
         speed.value = f"{iss['velocity']:,.0f}"
-        speed.spans = [ft.TextSpan(" km/h", unit)]
+        speed.spans = [ft.TextSpan(" km/h", UNIT)]
         altitude.value = f"{iss['altitude']:,.1f}"
-        altitude.spans = [ft.TextSpan(" km", unit)]
+        altitude.spans = [ft.TextSpan(" km", UNIT)]
         ns, ew = "N" if lat >= 0 else "S", "E" if lon >= 0 else "W"
         position.value = f"{abs(lat):.2f}° {ns}, {abs(lon):.2f}° {ew}"
         flown.value = f"{(iss['timestamp'] - first) * iss['velocity'] / 3600:,.0f} km"
         status.value, status.color = "Live from wheretheiss.at", MUTED
-
-    def overview() -> ftm.MapLatitudeLongitude:
-        """The middle of the trail, so all of it fits on screen."""
-        points = [p for line in trail.polylines for p in line.coordinates]
-        return points[len(points) // 2]
 
     async def handle_follow_change(e: ft.Event[ft.Switch]):
         state["follow"] = e.control.value
         if station.visible:
             state["flying_until"] = time.monotonic() + 1.7  # let this flight finish
             await my_map.move_to(
-                station.coordinates if state["follow"] else overview(),
+                station.coordinates if state["follow"] else overview(trail),
                 zoom=CLOSE if state["follow"] else WORLD,
                 animation_duration=ft.Duration(milliseconds=1600),
             )
@@ -185,68 +163,118 @@ async def main(page: ft.Page):
                 )
 
     for p in past:
-        add_point(p["latitude"], p["longitude"])
-    if now:
-        show(now)
-    else:
-        status.value, status.color = "Can't reach wheretheiss.at. Retrying...", RED
+        add_point(trail, p["latitude"], p["longitude"])
 
-    my_map = ftm.Map(
-        expand=True,
-        initial_center=overview() if trail.polylines else LL(20, 0),
-        initial_zoom=WORLD,
-        bgcolor="#AAD3DF",
-        layers=[
-            ftm.TileLayer(
-                url_template="https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-                user_agent_package_name="com.example.iss_tracker",
-            ),
-            trail,
-            ftm.MarkerLayer(markers=[station]),
-            ftm.SimpleAttribution(
-                text="OpenStreetMap contributors",
-                alignment=ft.Alignment.BOTTOM_CENTER,
-                bgcolor=ft.Colors.with_opacity(0.85, ft.Colors.WHITE),
-                text_style=ft.TextStyle(size=11),
-            ),
-        ],
-    )
     page.add(
         ft.Stack(
             expand=True,
             controls=[
-                ft.Container(left=0, right=0, top=0, bottom=0, content=my_map),
+                my_map := ftm.Map(
+                    left=0,  # fills the screen, under the cards
+                    top=0,
+                    right=0,
+                    bottom=0,
+                    initial_center=overview(trail) if trail.polylines else LL(20, 0),
+                    initial_zoom=WORLD,
+                    bgcolor="#AAD3DF",
+                    layers=[
+                        ftm.TileLayer(
+                            url_template="https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                            user_agent_package_name="com.example.iss_tracker",
+                        ),
+                        trail,
+                        ftm.MarkerLayer(
+                            markers=[
+                                station := ftm.Marker(
+                                    coordinates=LL(0, 0),
+                                    width=48,
+                                    height=48,
+                                    visible=False,
+                                    content=ft.Container(
+                                        border_radius=24,
+                                        bgcolor=ft.Colors.WHITE,
+                                        border=ft.Border.all(3, ACCENT),
+                                        alignment=ft.Alignment.CENTER,
+                                        content=ft.Icon(
+                                            ft.Icons.SATELLITE_ALT, color=ACCENT, size=26
+                                        ),
+                                    ),
+                                )
+                            ]
+                        ),
+                        ftm.SimpleAttribution(
+                            text="OpenStreetMap contributors",
+                            alignment=ft.Alignment.BOTTOM_CENTER,
+                            bgcolor=ft.Colors.with_opacity(0.85, ft.Colors.WHITE),
+                            text_style=ft.TextStyle(size=11),
+                        ),
+                    ],
+                ),
                 floating_card(
                     top=True,
                     controls=[
                         ft.Text(
-                            "LIVE  ·  every second",
-                            size=12,
-                            color=RED,
-                            weight=ft.FontWeight.W_800,
+                            "LIVE  ·  every second", size=12, color=RED, weight=ft.FontWeight.W_800
                         ),
                         ft.Text(
-                            "Where is the ISS?",
-                            size=26,
-                            color=INK,
-                            weight=ft.FontWeight.W_900,
+                            "Where is the ISS?", size=26, color=INK, weight=ft.FontWeight.W_900
                         ),
                     ],
                 ),
                 floating_card(
                     top=False,
                     controls=[
-                        ft.Row([stat("SPEED", speed), stat("ALTITUDE", altitude)]),
+                        ft.Row(
+                            [
+                                stat(
+                                    "SPEED",
+                                    speed := ft.Text(
+                                        "--",
+                                        size=24,
+                                        weight=ft.FontWeight.W_900,
+                                        color=INK,
+                                        no_wrap=True,
+                                    ),
+                                ),
+                                stat(
+                                    "ALTITUDE",
+                                    altitude := ft.Text(
+                                        "--",
+                                        size=24,
+                                        weight=ft.FontWeight.W_900,
+                                        color=INK,
+                                        no_wrap=True,
+                                    ),
+                                ),
+                            ]
+                        ),
                         ft.Row(
                             controls=[
-                                stat("POSITION", position),
-                                stat("FLOWN SINCE OPENED", flown),
+                                stat(
+                                    "POSITION",
+                                    position := ft.Text(
+                                        "--", size=16, weight=ft.FontWeight.W_700, color=INK
+                                    ),
+                                ),
+                                stat(
+                                    "FLOWN SINCE OPENED",
+                                    flown := ft.Text(
+                                        "0 km", size=16, weight=ft.FontWeight.W_700, color=ACCENT
+                                    ),
+                                ),
                             ]
                         ),
                         ft.Divider(height=1, color="#ECEBF2"),
                         ft.Row(
                             controls=[
-                                ft.Container(expand=True, content=status),
+                                ft.Container(
+                                    expand=True,
+                                    content=(
+                                        status := ft.Text(
+                                            size=13, weight=ft.FontWeight.W_600, color=MUTED
+                                        )
+                                    ),
+                                ),
                                 ft.Switch(
                                     label="Follow",
                                     active_color=ACCENT,
@@ -259,6 +287,11 @@ async def main(page: ft.Page):
             ],
         )
     )
+    if now:
+        show(now)
+    else:
+        status.value, status.color = "Can't reach wheretheiss.at. Retrying...", RED
+    page.update()
 
     # The loop outlives a closed browser tab, so pause it while the user is away
     # and stop it when the session ends.

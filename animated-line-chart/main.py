@@ -17,8 +17,7 @@ def money(value: float) -> str:
 def tip(text: str) -> fch.LineChartDataPointTooltip:
     """A point's tooltip, in white so it reads on the coloured tooltip box."""
     return fch.LineChartDataPointTooltip(
-        text=text,
-        text_style=ft.TextStyle(color=ft.Colors.WHITE, weight=ft.FontWeight.BOLD),
+        text=text, text_style=ft.TextStyle(color=ft.Colors.WHITE, weight=ft.FontWeight.BOLD)
     )
 
 
@@ -50,10 +49,7 @@ def main(page: ft.Page):
         below_line_gradient=ft.LinearGradient(
             begin=ft.Alignment.TOP_CENTER,
             end=ft.Alignment.BOTTOM_CENTER,
-            colors=[
-                ft.Colors.with_opacity(0.35, ACCENT),
-                ft.Colors.with_opacity(0.0, ACCENT),
-            ],
+            colors=[ft.Colors.with_opacity(0.35, ACCENT), ft.Colors.with_opacity(0.0, ACCENT)],
         ),
     )
     last_year = fch.LineChartData(
@@ -67,47 +63,21 @@ def main(page: ft.Page):
         dash_pattern=[8, 6],
         point=False,
     )
-    chart = fch.LineChart(
-        expand=True,
-        data_series=[line],
-        min_x=0,
-        max_x=11,
-        min_y=0,
-        max_y=14,
-        animation=ft.Animation(duration=420, curve=ft.AnimationCurve.EASE_OUT_CUBIC),
-        horizontal_grid_lines=fch.ChartGridLines(interval=4, color=ft.Colors.GREY_200),
-        tooltip=fch.LineChartTooltip(bgcolor=ACCENT, border_radius=12),
-        left_axis=fch.ChartAxis(
-            label_size=44,
-            labels=[
-                fch.ChartAxisLabel(value=v, label=ft.Text(f"${v}k"))
-                for v in (0, 4, 8, 12)
-            ],
-        ),
-        bottom_axis=fch.ChartAxis(
-            label_size=30,
-            labels=[
-                fch.ChartAxisLabel(value=i, label=ft.Text(m))
-                for i, m in enumerate(MONTHS)
-            ],
-        ),
-    )
 
     playing = False
 
     def update_stats():
-        """Refresh the total, growth and the three cards from the points so far."""
+        """Refresh the total, the growth, the three cards and the buttons, and update."""
         values = [p.y for p in line.points]
         total.value = money(sum(values)) if values else money(0)
         growth.value = (
-            f"+{(values[-1] / values[0] - 1) * 100:.0f}% since Jan"
-            if len(values) > 1
-            else ""
+            f"+{(values[-1] / values[0] - 1) * 100:.0f}% since Jan" if len(values) > 1 else ""
         )
         months.value = f"{len(values)} / 12"
         best.value = money(max(values)) if values else "-"
         average.value = money(sum(values) / len(values)) if values else "-"
         add_button.disabled = play_button.disabled = playing or len(values) == 12
+        page.update()
 
     async def add_month():
         """Add next month's sales as a new point (hover or tap it for its value)."""
@@ -119,16 +89,13 @@ def main(page: ft.Page):
         # on the last point and then moves to its value: the line grows instead of jumping.
         start = line.points[-1] if line.points else None
         point = fch.LineChartDataPoint(
-            start.x if start else month,
-            start.y if start else amount,
-            tooltip=tip(money(amount)),
+            start.x if start else month, start.y if start else amount, tooltip=tip(money(amount))
         )
         line.points.append(point)
         chart.update()
         await asyncio.sleep(0.05)
         point.x, point.y = month, amount
         update_stats()
-        page.update()
 
     async def handle_add_click(e: ft.Event[ft.FilledButton]):
         await add_month()
@@ -137,13 +104,11 @@ def main(page: ft.Page):
         nonlocal playing
         playing = True  # keeps both buttons disabled until the year is complete
         update_stats()
-        page.update()
         while len(line.points) < 12:
             await add_month()
             await asyncio.sleep(0.5)
         playing = False
         update_stats()
-        page.update()
 
     def handle_compare_change(e: ft.Event[ft.Switch]):
         chart.data_series = [last_year, line] if e.control.value else [line]
@@ -152,7 +117,6 @@ def main(page: ft.Page):
     def handle_reset_click(e: ft.Event[ft.IconButton]):
         line.points.clear()
         update_stats()
-        page.update()
 
     page.add(
         ft.SafeArea(
@@ -180,14 +144,41 @@ def main(page: ft.Page):
                             expand=True,
                             border_radius=24,
                             bgcolor=ft.Colors.with_opacity(0.04, ACCENT),
-                            padding=ft.Padding.only(
-                                left=8, right=20, top=28, bottom=10
+                            padding=ft.Padding.only(left=8, right=20, top=28, bottom=10),
+                            content=(
+                                chart := fch.LineChart(
+                                    expand=True,
+                                    data_series=[line],
+                                    min_x=0,
+                                    max_x=11,
+                                    min_y=0,
+                                    max_y=14,
+                                    animation=ft.Animation(
+                                        duration=420, curve=ft.AnimationCurve.EASE_OUT_CUBIC
+                                    ),
+                                    horizontal_grid_lines=fch.ChartGridLines(
+                                        interval=4, color=ft.Colors.GREY_200
+                                    ),
+                                    tooltip=fch.LineChartTooltip(bgcolor=ACCENT, border_radius=12),
+                                    left_axis=fch.ChartAxis(
+                                        label_size=44,
+                                        labels=[
+                                            fch.ChartAxisLabel(value=v, label=ft.Text(f"${v}k"))
+                                            for v in (0, 4, 8, 12)
+                                        ],
+                                    ),
+                                    bottom_axis=fch.ChartAxis(
+                                        label_size=30,
+                                        labels=[
+                                            fch.ChartAxisLabel(value=i, label=ft.Text(m))
+                                            for i, m in enumerate(MONTHS)
+                                        ],
+                                    ),
+                                )
                             ),
-                            content=chart,
                         ),
                         ft.Switch(
-                            label="Compare with 2025 (dashed)",
-                            on_change=handle_compare_change,
+                            label="Compare with 2025 (dashed)", on_change=handle_compare_change
                         ),
                         ft.Row(
                             spacing=10,
@@ -201,14 +192,10 @@ def main(page: ft.Page):
                             wrap=True,
                             controls=[
                                 add_button := ft.FilledButton(
-                                    "Add month",
-                                    icon=ft.Icons.ADD,
-                                    on_click=handle_add_click,
+                                    "Add month", icon=ft.Icons.ADD, on_click=handle_add_click
                                 ),
                                 play_button := ft.OutlinedButton(
-                                    "Play",
-                                    icon=ft.Icons.PLAY_ARROW,
-                                    on_click=handle_play_click,
+                                    "Play", icon=ft.Icons.PLAY_ARROW, on_click=handle_play_click
                                 ),
                                 ft.IconButton(
                                     ft.Icons.RESTART_ALT,
@@ -223,7 +210,6 @@ def main(page: ft.Page):
         )
     )
     update_stats()
-    page.update()
 
 
 if __name__ == "__main__":

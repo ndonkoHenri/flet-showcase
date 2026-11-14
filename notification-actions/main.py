@@ -10,12 +10,6 @@ SNOOZE_SECONDS = 10
 async def main(page: ft.Page):
     page.title = "Tasks"
 
-    task = ft.ListTile(
-        leading=ft.Icon(ft.Icons.RADIO_BUTTON_UNCHECKED, size=30),
-        title=ft.Text("Review pull request #42", size=19, weight=ft.FontWeight.W_600),
-        subtitle=ft.Text("Due today", size=15),
-    )
-
     def mark_task_done():
         """Shows the task as done: a green check, crossed out."""
         task.leading = ft.Icon(ft.Icons.CHECK_CIRCLE, color=ft.Colors.GREEN, size=30)
@@ -32,11 +26,7 @@ async def main(page: ft.Page):
     async def handle_action(e: ftn.NotificationActionEvent):
         """Called when someone taps a notification button; `e.action_id` says which."""
         events.controls.insert(
-            0,
-            ft.Text(
-                f'on_action: "{e.action_id}" (payload {e.payload})',
-                font_family="monospace",
-            ),
+            0, ft.Text(f'on_action: "{e.action_id}" (payload {e.payload})', font_family="monospace")
         )
         if e.action_id == "done":
             mark_task_done()
@@ -46,7 +36,7 @@ async def main(page: ft.Page):
 
     notifications = ftn.Notifications(on_action=handle_action)
 
-    async def send_notification(e: ft.Event[ft.FilledButton] = None):
+    async def send_notification(e: ft.Event[ft.FilledButton] | None = None):
         """Shows the task's notification with its Snooze and Mark done buttons."""
         snooze = ftn.NotificationAction(id="snooze", title="Snooze")
         done = ftn.NotificationAction(id="done", title="Mark done")
@@ -76,12 +66,18 @@ async def main(page: ft.Page):
                     ft.Container(
                         border_radius=16,
                         bgcolor=ft.Colors.SURFACE_CONTAINER,
-                        content=task,
+                        content=(
+                            task := ft.ListTile(
+                                leading=ft.Icon(ft.Icons.RADIO_BUTTON_UNCHECKED, size=30),
+                                title=ft.Text(
+                                    "Review pull request #42", size=19, weight=ft.FontWeight.W_600
+                                ),
+                                subtitle=ft.Text("Due today", size=15),
+                            )
+                        ),
                     ),
                     ft.FilledButton(
-                        "Send notification",
-                        icon=ft.Icons.NOTIFICATIONS,
-                        on_click=send_notification,
+                        "Send notification", icon=ft.Icons.NOTIFICATIONS, on_click=send_notification
                     ),
                     ft.Text("Events", size=18, weight=ft.FontWeight.W_700),
                     events := ft.Column(spacing=6),

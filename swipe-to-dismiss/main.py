@@ -35,14 +35,13 @@ def main(page: ft.Page):
     page.padding = 0
     page.bgcolor = ft.Colors.WHITE
 
-    count = ft.Text(size=16, color=ft.Colors.GREY_600)
-
     def show_count():
-        """The header count, and the empty state when nothing is left."""
+        """Update the header count, and show the empty state when nothing is left."""
         n = len(inbox.controls)
         count.value = f"{n} message{'' if n == 1 else 's'}"
         empty.visible = n == 0
         inbox.visible = n > 0
+        page.update()
 
     def handle_dismiss(e: ft.DismissibleDismissEvent):
         item = e.control
@@ -54,7 +53,6 @@ def main(page: ft.Page):
         def handle_undo(e: ft.Event[ft.SnackBarAction]):
             inbox.controls.insert(index, email(*item.data))  # a fresh copy, unswiped
             show_count()
-            page.update()
 
         page.show_dialog(
             ft.SnackBar(
@@ -66,7 +64,6 @@ def main(page: ft.Page):
                 bgcolor=ft.Colors.GREEN_700 if archived else ft.Colors.GREY_900,
             )
         )
-        page.update()
 
     def email(sender: str, subject: str, preview: str, color: str) -> ft.Dismissible:
         """One email that can be swiped away, either way."""
@@ -119,25 +116,6 @@ def main(page: ft.Page):
         """Put every email back, for another round of swiping."""
         inbox.controls = [email(*m) for m in MAIL]
         show_count()
-        page.update()
-
-    empty = ft.Container(  # shown when every email is gone
-        visible=False,
-        expand=True,
-        alignment=ft.Alignment.CENTER,
-        content=ft.Column(
-            tight=True,
-            spacing=8,
-            horizontal_alignment=ft.CrossAxisAlignment.CENTER,
-            controls=[
-                ft.Icon(ft.Icons.INBOX_ROUNDED, size=64, color=ft.Colors.GREY_400),
-                ft.Text("Inbox zero!", size=22, weight=ft.FontWeight.W_700),
-                ft.TextButton("Bring them back", on_click=handle_refill_click),
-            ],
-        ),
-    )
-    inbox = ft.ListView(expand=True, spacing=8, controls=[email(*m) for m in MAIL])
-    show_count()
 
     page.add(
         ft.SafeArea(
@@ -154,7 +132,9 @@ def main(page: ft.Page):
                             vertical_alignment=ft.CrossAxisAlignment.END,
                             controls=[
                                 ft.Text("Inbox", size=30, weight=ft.FontWeight.W_800),
-                                count,
+                                count := ft.Text(
+                                    f"{len(MAIL)} messages", size=16, color=ft.Colors.GREY_600
+                                ),
                             ],
                         ),
                         ft.Text(
@@ -162,8 +142,26 @@ def main(page: ft.Page):
                             size=15,
                             color=ft.Colors.GREY_500,
                         ),
-                        inbox,
-                        empty,
+                        inbox := ft.ListView(
+                            expand=True, spacing=8, controls=[email(*m) for m in MAIL]
+                        ),
+                        empty := ft.Container(
+                            visible=False,
+                            expand=True,
+                            alignment=ft.Alignment.CENTER,
+                            content=ft.Column(
+                                tight=True,
+                                spacing=8,
+                                horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                                controls=[
+                                    ft.Icon(
+                                        ft.Icons.INBOX_ROUNDED, size=64, color=ft.Colors.GREY_400
+                                    ),
+                                    ft.Text("Inbox zero!", size=22, weight=ft.FontWeight.W_700),
+                                    ft.TextButton("Bring them back", on_click=handle_refill_click),
+                                ],
+                            ),
+                        ),  # shown when every email is gone
                     ],
                 ),
             ),

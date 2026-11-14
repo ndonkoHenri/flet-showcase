@@ -1,0 +1,2 @@
+# One line length for every app: short calls stay on one line instead of being split by the 88 default.
+line-length = 100
