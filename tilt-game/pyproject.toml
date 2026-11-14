@@ -1,0 +1,15 @@
+[project]
+name = "tilt-game"
+version = "1.0.0"
+description = "Tilt the phone to roll a ball and collect the stars, with Flet's accelerometer."
+requires-python = ">=3.10"
+dependencies = [
+    "flet==1.1.2"
+]
+
+[dependency-groups]
+dev = ["flet-cli==1.1.2", "flet-desktop==1.1.2", "flet-web==1.1.2"]
+
+[tool.flet]
+org = "com.example"
+product = "Tilt to roll"

@@ -8,3 +8,5 @@ storage/
 .idea/
 .vscode/
 .ruff_cache/
+uv.lock
+.flet/

@@ -12,6 +12,7 @@ running and links to the docs for everything it uses.
 | <img src=".media/iss-tracker/thumb.png" width="120" alt="">          | [ISS tracker](iss-tracker)                          | The space station live on a map, every second, with its trail           |
 | <img src=".media/notification-actions/thumb.png" width="120" alt=""> | [Notification action buttons](notification-actions) | Buttons in a notification that call your Python code                    |
 | <img src=".media/pull-to-refresh/thumb.png" width="120" alt="">      | [Pull to refresh](pull-to-refresh)                  | Pull a list down to load new items; a Refresh button on desktop and web |
+| <img src=".media/tilt-game/thumb.png" width="120" alt="">            | [Tilt game](tilt-game)                              | Tilt the phone to roll a ball over the stars; arrow keys on desktop     |
 
 ## Run an app
 
