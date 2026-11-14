@@ -13,6 +13,7 @@ running and links to the docs for everything it uses.
 | <img src=".media/notification-actions/thumb.png" width="120" alt=""> | [Notification action buttons](notification-actions) | Buttons in a notification that call your Python code                    |
 | <img src=".media/pose-estimation/thumb.png" width="120" alt="">      | [Pose estimation](pose-estimation)                  | An on-device AI model draws a skeleton on people in photos              |
 | <img src=".media/pull-to-refresh/thumb.png" width="120" alt="">      | [Pull to refresh](pull-to-refresh)                  | Pull a list down to load new items; a Refresh button on desktop and web |
+| <img src=".media/swipe-to-dismiss/thumb.png" width="120" alt="">     | [Swipe to dismiss](swipe-to-dismiss)                | Swipe emails away to archive or delete them, with undo                  |
 | <img src=".media/tilt-game/thumb.png" width="120" alt="">            | [Tilt game](tilt-game)                              | Tilt the phone to roll a ball over the stars; arrow keys on desktop     |
 
 ## Run an app
