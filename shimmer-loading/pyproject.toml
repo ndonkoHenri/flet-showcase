@@ -1,0 +1,15 @@
+[project]
+name = "shimmer-loading"
+version = "1.0.0"
+description = "A reading feed that shows shimmering grey placeholders while its articles load."
+requires-python = ">=3.10"
+dependencies = [
+    "flet==1.1.2"
+]
+
+[dependency-groups]
+dev = ["flet-cli==1.1.2", "flet-desktop==1.1.2", "flet-web==1.1.2"]
+
+[tool.flet]
+org = "com.example"
+product = "Shimmer Loading"
