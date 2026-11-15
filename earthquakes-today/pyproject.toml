@@ -1,0 +1,16 @@
+[project]
+name = "earthquakes-today"
+version = "1.0.0"
+description = "Every earthquake of the last hour, day or week from the USGS live feed, on a world map."
+requires-python = ">=3.10"
+dependencies = [
+    "flet==1.1.2",
+    "flet-map==1.1.2"
+]
+
+[dependency-groups]
+dev = ["flet-cli==1.1.2", "flet-desktop==1.1.2", "flet-web==1.1.2"]
+
+[tool.flet]
+org = "com.example"
+product = "Earthquakes Today"
