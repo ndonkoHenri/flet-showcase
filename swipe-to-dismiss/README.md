@@ -42,12 +42,13 @@ uv run flet debug ios       # iPhone or iOS simulator
 To share it, [build](https://flet.dev/docs/publish) a package for any platform (desktop apps build on their own OS):
 
 ```bash
-uv run flet build apk       # Android
-uv run flet build ipa       # iOS
-uv run flet build macos     # macOS app
-uv run flet build windows   # Windows app
-uv run flet build linux     # Linux app
-uv run flet build web       # static website
+uv run flet build apk             # Android
+uv run flet build ipa             # iOS
+uv run flet build ios-simulator   # iOS simulator
+uv run flet build macos           # macOS app
+uv run flet build windows         # Windows app
+uv run flet build linux           # Linux app
+uv run flet build web             # static website
 ```
 ## Learn more
 
