@@ -1,0 +1,15 @@
+[project]
+name = "implicit-animations"
+version = "1.0.0"
+description = "Five boxes that grow, fade, spin, slide and zoom when Python sets a new value, with the curve and duration you pick."
+requires-python = ">=3.10"
+dependencies = [
+    "flet==1.1.2"
+]
+
+[dependency-groups]
+dev = ["flet-cli==1.1.2", "flet-desktop==1.1.2", "flet-web==1.1.2"]
+
+[tool.flet]
+org = "com.example"
+product = "Animations"

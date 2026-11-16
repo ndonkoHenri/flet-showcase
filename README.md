@@ -12,6 +12,7 @@ running and links to the docs for everything it uses.
 | <img src=".media/barcode-scanner/thumb.png" width="120" alt="">      | [Barcode scanner](barcode-scanner)                  | pyzbar reads barcodes and QR codes in a photo; copy or open each one    |
 | <img src=".media/earthquakes-today/thumb.png" width="120" alt="">    | [Earthquakes today](earthquakes-today)              | The USGS live quake feed on a map: filter, tap a quake for details      |
 | <img src=".media/hero-animation/thumb.png" width="120" alt="">       | [Hero animation](hero-animation)                    | A photo flies from a grid into its own page and back                    |
+| <img src=".media/implicit-animations/thumb.png" width="120" alt="">  | [Implicit animations](implicit-animations)          | Size, color, fade, spin, slide and zoom that animate with your curve    |
 | <img src=".media/iss-tracker/thumb.png" width="120" alt="">          | [ISS tracker](iss-tracker)                          | The space station live on a map, every second, with its trail           |
 | <img src=".media/notification-actions/thumb.png" width="120" alt=""> | [Notification action buttons](notification-actions) | Buttons in a notification that call your Python code                    |
 | <img src=".media/pose-estimation/thumb.png" width="120" alt="">      | [Pose estimation](pose-estimation)                  | An on-device AI model draws a skeleton on people in photos              |
