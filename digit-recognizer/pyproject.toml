@@ -1,0 +1,22 @@
+[project]
+name = "digit-recognizer"
+version = "1.0.0"
+description = "Draw a digit and a scikit-learn model, trained on the device when the app starts, guesses it."
+requires-python = ">=3.11"
+dependencies = [
+    "flet==1.1.2",
+    "numpy==2.4.6",
+    "scikit-learn==1.9.0",
+    "scipy==1.18.0"
+]
+
+[dependency-groups]
+dev = ["flet-cli==1.1.2", "flet-desktop==1.1.2", "flet-web==1.1.2"]
+
+[tool.flet]
+org = "com.example"
+product = "Draw a digit"
+
+[tool.flet.android]
+# scikit-learn reads files next to its modules, so it must not stay zipped on Android.
+extract_packages = ["sklearn"]
