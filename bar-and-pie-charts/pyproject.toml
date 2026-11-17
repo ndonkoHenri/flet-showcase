@@ -1,0 +1,16 @@
+[project]
+name = "bar-and-pie-charts"
+version = "1.0.0"
+description = "A sales dashboard whose bar and pie charts animate to each region's numbers, with tappable bars and slices."
+requires-python = ">=3.10"
+dependencies = [
+    "flet==1.1.2",
+    "flet-charts==1.1.2"
+]
+
+[dependency-groups]
+dev = ["flet-cli==1.1.2", "flet-desktop==1.1.2", "flet-web==1.1.2"]
+
+[tool.flet]
+org = "com.example"
+product = "Sales"
