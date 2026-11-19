@@ -30,13 +30,9 @@ charts glide to its numbers; tap a bar or a slice to read its value.
 - On desktop and web, the **left and right arrow keys** switch regions too
   ([`on_keyboard_event`](https://flet.dev/docs/controls/page#flet.Page.on_keyboard_event)).
 
-|                                                          Android                                                           |                                                        iOS                                                         |
-|:--------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------:|
-| <img src="../.media/bar-and-pie-charts/android.gif" width="240" alt="Tapping a bar, switching regions and tapping slices on Android"> | <img src="../.media/bar-and-pie-charts/ios.gif" width="240" alt="Tapping a bar, switching regions and tapping slices on an iPhone"> |
-
-|                                                              Web                                                              |
-|:-----------------------------------------------------------------------------------------------------------------------------:|
-| <img src="../.media/bar-and-pie-charts/web.gif" width="400" alt="Hovering bars, switching regions and hovering slices in a browser"> |
+|                                                                Android                                                                |                                                                 iOS                                                                 |                                                                 Web                                                                  |
+|:-------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------:|
+| <img src="../.media/bar-and-pie-charts/android.gif" width="240" alt="Tapping a bar, switching regions and tapping slices on Android"> | <img src="../.media/bar-and-pie-charts/ios.gif" width="240" alt="Tapping a bar, switching regions and tapping slices on an iPhone"> | <img src="../.media/bar-and-pie-charts/web.gif" width="240" alt="Hovering bars, switching regions and hovering slices in a browser"> |
 
 The same code runs on macOS, Windows and Linux too.
 

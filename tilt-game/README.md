@@ -16,13 +16,9 @@ Tilt the phone and a ball rolls to the lower side of the box. Roll it over all f
   on desktop, in a browser on a computer, and in the iOS simulator, which has no accelerometer.
 - When the last star pops, the clock stops, your best time is kept, and **Play again** scatters new stars.
 
-|                                                                Android                                                                |                                                       iOS                                                       |
-|:-------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------:|
-| <img src="../.media/tilt-game/android.gif" width="240" alt="Tilting an Android emulator right, down, left and up to collect the stars"> | <img src="../.media/tilt-game/ios.gif" width="240" alt="Collecting the stars with the arrow keys in the iOS simulator"> |
-
-|                                                          Web                                                          |
-|:---------------------------------------------------------------------------------------------------------------------:|
-| <img src="../.media/tilt-game/web.gif" width="400" alt="Collecting the stars with the arrow keys in a browser"> |
+|                                                                 Android                                                                 |                                                           iOS                                                           |                                                       Web                                                       |
+|:---------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------:|
+| <img src="../.media/tilt-game/android.gif" width="240" alt="Tilting an Android emulator right, down, left and up to collect the stars"> | <img src="../.media/tilt-game/ios.gif" width="240" alt="Collecting the stars with the arrow keys in the iOS simulator"> | <img src="../.media/tilt-game/web.gif" width="320" alt="Collecting the stars with the arrow keys in a browser"> |
 
 The same code runs on macOS, Windows and Linux too, with the arrow keys. In a browser on a phone, it uses the
 phone's tilt where the browser shares it.

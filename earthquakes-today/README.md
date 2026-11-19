@@ -33,13 +33,9 @@ Every earthquake of the last hour, day or week, live from the
 
 The download runs in a thread (`asyncio.to_thread`), so the app never freezes while it waits.
 
-|                                                                     Android                                                                     |                                                                     iOS                                                                     |
-|:-----------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------:|
-| <img src="../.media/earthquakes-today/android.gif" width="240" alt="Picking quakes from the list and on the map, and switching to the past week on Android"> | <img src="../.media/earthquakes-today/ios.gif" width="240" alt="Picking quakes from the list and on the map, and switching to the past week on an iPhone"> |
-
-|                                                                     Web                                                                      |
-|:--------------------------------------------------------------------------------------------------------------------------------------------:|
-| <img src="../.media/earthquakes-today/web.gif" width="400" alt="Picking a quake off Sumatra from the list, then one in Peru on the past week's map, in a browser"> |
+|                                                                           Android                                                                            |                                                                            iOS                                                                             |                                                                                Web                                                                                 |
+|:------------------------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| <img src="../.media/earthquakes-today/android.gif" width="240" alt="Picking quakes from the list and on the map, and switching to the past week on Android"> | <img src="../.media/earthquakes-today/ios.gif" width="240" alt="Picking quakes from the list and on the map, and switching to the past week on an iPhone"> | <img src="../.media/earthquakes-today/web.gif" width="240" alt="Picking a quake off Sumatra from the list, then one in Peru on the past week's map, in a browser"> |
 
 The same code runs on macOS, Windows and Linux too, where you click the circles and zoom with the mouse wheel. On
 wide windows, the app keeps a phone-sized column in the middle. Earthquake data from the

@@ -11,13 +11,9 @@ keeps turning until that function returns:
   and runs the same function. The app checks [`page.platform`](https://flet.dev/docs/controls/page#flet.Page.platform)
   and [`page.web`](https://flet.dev/docs/controls/page#flet.Page.web) to decide which hint and button to show.
 
-|                                                               Android                                                               |                                                                iOS                                                                |
-|:-----------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------:|
-| <img src="../.media/pull-to-refresh/android.gif" width="240" alt="Pulling the inbox down on Android adds a new message at the top"> | <img src="../.media/pull-to-refresh/ios.gif" width="240" alt="Pulling the inbox down on an iPhone adds a new message at the top"> |
-
-|                                                                 Web                                                                 |
-|:-----------------------------------------------------------------------------------------------------------------------------------:|
-| <img src="../.media/pull-to-refresh/web.gif" width="480" alt="Clicking Refresh in a browser shows the spinner, then a new message"> |
+|                                                               Android                                                               |                                                                iOS                                                                |                                                                 Web                                                                 |
+|:-----------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------:|
+| <img src="../.media/pull-to-refresh/android.gif" width="240" alt="Pulling the inbox down on Android adds a new message at the top"> | <img src="../.media/pull-to-refresh/ios.gif" width="240" alt="Pulling the inbox down on an iPhone adds a new message at the top"> | <img src="../.media/pull-to-refresh/web.gif" width="320" alt="Clicking Refresh in a browser shows the spinner, then a new message"> |
 
 The same code runs on macOS, Windows and Linux too, with the Refresh button as on the web.
 

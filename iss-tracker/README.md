@@ -18,13 +18,9 @@ The network call runs in a thread (`asyncio.to_thread`), so the app never freeze
 tab closes ([`on_disconnect`](https://flet.dev/docs/controls/page#flet.Page.on_disconnect)) and stops when the
 session ends ([`on_close`](https://flet.dev/docs/controls/page#flet.Page.on_close)).
 
-|                                                            Android                                                             |                                                          iOS                                                          |
-|:------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------:|
-| <img src="../.media/iss-tracker/android.gif" width="240" alt="Following the space station over the coast of Maine on Android"> | <img src="../.media/iss-tracker/ios.gif" width="240" alt="Following the space station near Nova Scotia on an iPhone"> |
-
-|                                                                    Web                                                                    |
-|:-----------------------------------------------------------------------------------------------------------------------------------------:|
-| <img src="../.media/iss-tracker/web.gif" width="400" alt="Following the space station past New York in a browser, then zooming back out"> |
+|                                                            Android                                                             |                                                          iOS                                                          |                                                                    Web                                                                    |
+|:------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------:|
+| <img src="../.media/iss-tracker/android.gif" width="240" alt="Following the space station over the coast of Maine on Android"> | <img src="../.media/iss-tracker/ios.gif" width="240" alt="Following the space station near Nova Scotia on an iPhone"> | <img src="../.media/iss-tracker/web.gif" width="320" alt="Following the space station past New York in a browser, then zooming back out"> |
 
 The same code runs on macOS, Windows and Linux too. Position data from
 [wheretheiss.at](https://wheretheiss.at), map © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributors.

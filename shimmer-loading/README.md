@@ -28,13 +28,9 @@ what shape it will take.
   to its [`selected_icon`](https://flet.dev/docs/controls/iconbutton#flet.IconButton.selected_icon). Saved articles
   stay saved when the feed reloads.
 
-|                                                                Android                                                                 |                                                               iOS                                                                |
-|:--------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------:|
-| <img src="../.media/shimmer-loading/android.gif" width="240" alt="Shimmering placeholders turn into articles, then a pull and a downward sweep reload them on Android"> | <img src="../.media/shimmer-loading/ios.gif" width="240" alt="Shimmering placeholders turn into articles, then a pull and a downward sweep reload them on an iPhone"> |
-
-|                                                                   Web                                                                   |
-|:---------------------------------------------------------------------------------------------------------------------------------------:|
-| <img src="../.media/shimmer-loading/web.gif" width="400" alt="Shimmering placeholders turn into articles, then Refresh reloads them in a browser"> |
+|                                                                                 Android                                                                                 |                                                                                  iOS                                                                                  |                                                                        Web                                                                         |
+|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------:|
+| <img src="../.media/shimmer-loading/android.gif" width="240" alt="Shimmering placeholders turn into articles, then a pull and a downward sweep reload them on Android"> | <img src="../.media/shimmer-loading/ios.gif" width="240" alt="Shimmering placeholders turn into articles, then a pull and a downward sweep reload them on an iPhone"> | <img src="../.media/shimmer-loading/web.gif" width="240" alt="Shimmering placeholders turn into articles, then Refresh reloads them in a browser"> |
 
 The same code runs on macOS, Windows and Linux too, with the Refresh button as on the web. Photos from Wikimedia
 Commons, CC0 (originally on Unsplash): *NaPali Coast* by Josh Austin, *Road along the fjord* by Danny Froese,

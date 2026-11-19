@@ -13,13 +13,9 @@ An inbox where you swipe emails away: right to archive, left to delete, with an 
   [`action`](https://flet.dev/docs/controls/snackbar#flet.SnackBar.action) puts the email back where it was.
 - When the inbox is empty, **Bring them back** refills it.
 
-|                                                  Android                                                  |                                                 iOS                                                 |
-|:---------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------:|
-| <img src="../.media/swipe-to-dismiss/android.gif" width="240" alt="Deleting, archiving, then undoing on Android"> | <img src="../.media/swipe-to-dismiss/ios.gif" width="240" alt="Deleting, archiving, then undoing on an iPhone"> |
-
-|                                     Web                                     |
-|:---------------------------------------------------------------------------:|
-| <img src="../.media/swipe-to-dismiss/web.gif" width="400" alt="Deleting, archiving, then undoing in a browser"> |
+|                                                      Android                                                      |                                                       iOS                                                       |                                                       Web                                                       |
+|:-----------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------:|
+| <img src="../.media/swipe-to-dismiss/android.gif" width="240" alt="Deleting, archiving, then undoing on Android"> | <img src="../.media/swipe-to-dismiss/ios.gif" width="240" alt="Deleting, archiving, then undoing on an iPhone"> | <img src="../.media/swipe-to-dismiss/web.gif" width="320" alt="Deleting, archiving, then undoing in a browser"> |
 
 The same code runs on macOS, Windows and Linux too, where you drag an email sideways with the mouse.
 

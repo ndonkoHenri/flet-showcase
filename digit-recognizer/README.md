@@ -26,13 +26,9 @@ the app starts, with [scikit-learn](https://scikit-learn.org). Nothing is downlo
 - **Undo** removes the last stroke and **Clear** starts over. With a keyboard, Backspace and Esc do the same
   ([`on_keyboard_event`](https://flet.dev/docs/controls/page#flet.Page.on_keyboard_event)).
 
-|                                                       Android                                                        |                                                       iOS                                                       |
-|:--------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------:|
-| <img src="../.media/digit-recognizer/android.gif" width="240" alt="Drawing a 7, clearing, then drawing a 4 on Android"> | <img src="../.media/digit-recognizer/ios.gif" width="240" alt="Drawing a 7, clearing, then drawing a 4 on an iPhone"> |
-
-|                                                          Web                                                           |
-|:----------------------------------------------------------------------------------------------------------------------:|
-| <img src="../.media/digit-recognizer/web.gif" width="400" alt="Drawing a 7 with the mouse, undoing a stroke, then drawing a 4 in a browser"> |
+|                                                         Android                                                         |                                                          iOS                                                          |                                                                     Web                                                                      |
+|:-----------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------:|
+| <img src="../.media/digit-recognizer/android.gif" width="240" alt="Drawing a 7, clearing, then drawing a 4 on Android"> | <img src="../.media/digit-recognizer/ios.gif" width="240" alt="Drawing a 7, clearing, then drawing a 4 on an iPhone"> | <img src="../.media/digit-recognizer/web.gif" width="240" alt="Drawing a 7 with the mouse, undoing a stroke, then drawing a 4 in a browser"> |
 
 The same code runs on macOS, Windows and Linux too, drawn with the mouse, in a phone-shaped window. The training
 digits are the UCI "Optical Recognition of Handwritten Digits" set (CC BY 4.0), bundled with scikit-learn

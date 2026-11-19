@@ -34,13 +34,9 @@ welcome screen.
   [`error_content`](https://flet.dev/docs/controls/lottie#flet_lottie.Lottie.error_content) instead: a cloud icon and
   "Couldn't load the animation".
 
-|                                                       Android                                                       |                                                       iOS                                                        |
-|:-------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------:|
-| <img src="../.media/lottie-onboarding/android.gif" width="240" alt="Swiping and tapping through four Lottie pages, then Get started and the welcome screen on Android"> | <img src="../.media/lottie-onboarding/ios.gif" width="240" alt="Swiping and tapping through four Lottie pages, then Get started and the welcome screen on an iPhone"> |
-
-|                                                          Web                                                          |
-|:---------------------------------------------------------------------------------------------------------------------:|
-| <img src="../.media/lottie-onboarding/web.gif" width="400" alt="Going through the onboarding with the mouse and the arrow keys in a browser"> |
+|                                                                                 Android                                                                                 |                                                                                  iOS                                                                                  |                                                                      Web                                                                      |
+|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------:|
+| <img src="../.media/lottie-onboarding/android.gif" width="240" alt="Swiping and tapping through four Lottie pages, then Get started and the welcome screen on Android"> | <img src="../.media/lottie-onboarding/ios.gif" width="240" alt="Swiping and tapping through four Lottie pages, then Get started and the welcome screen on an iPhone"> | <img src="../.media/lottie-onboarding/web.gif" width="240" alt="Going through the onboarding with the mouse and the arrow keys in a browser"> |
 
 The same code runs on macOS, Windows and Linux too, in a phone-shaped column centered in the window. The animations
 are from the example set of the [lottie-flutter](https://github.com/xvrh/lottie-flutter) package (MIT license),

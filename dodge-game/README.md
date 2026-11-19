@@ -31,13 +31,9 @@ dodge them. They fall faster and faster until one hits you.
   and a new best score is saved with [`SharedPreferences`](https://flet.dev/docs/services/sharedpreferences), so it's
   still there next time.
 
-|                                                       Android                                                       |                                                   iOS                                                   |
-|:-------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------:|
-| <img src="../.media/dodge-game/android.gif" width="240" alt="Dragging the player between falling blocks on Android until a block hits it"> | <img src="../.media/dodge-game/ios.gif" width="240" alt="Dragging the player between falling blocks on an iPhone until a block hits it"> |
-
-|                                                    Web                                                    |
-|:---------------------------------------------------------------------------------------------------------:|
-| <img src="../.media/dodge-game/web.gif" width="400" alt="Playing with the arrow keys and the mouse in a browser, pausing, then crashing"> |
+|                                                                  Android                                                                   |                                                                   iOS                                                                    |                                                                    Web                                                                    |
+|:------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------:|
+| <img src="../.media/dodge-game/android.gif" width="240" alt="Dragging the player between falling blocks on Android until a block hits it"> | <img src="../.media/dodge-game/ios.gif" width="240" alt="Dragging the player between falling blocks on an iPhone until a block hits it"> | <img src="../.media/dodge-game/web.gif" width="240" alt="Playing with the arrow keys and the mouse in a browser, pausing, then crashing"> |
 
 The same code runs on macOS, Windows and Linux too, played with the mouse or the arrow keys.
 

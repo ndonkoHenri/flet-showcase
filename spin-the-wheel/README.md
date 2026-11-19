@@ -20,13 +20,9 @@ you hear a click each time a slice passes the pointer. The sounds aren't audio f
 - **Add or remove names** with the field and the chips' ✕ ([`on_delete`](https://flet.dev/docs/controls/chip#flet.Chip.on_delete)):
   the wheel redraws with one slice per name, from 2 to 12.
 
-|                                                  Android                                                  |                                                 iOS                                                 |
-|:---------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------:|
-| <img src="../.media/spin-the-wheel/android.gif" width="240" alt="Spinning the wheel twice, removing a name in between on Android"> | <img src="../.media/spin-the-wheel/ios.gif" width="240" alt="Spinning the wheel twice, removing a name in between on an iPhone"> |
-
-|                                     Web                                     |
-|:---------------------------------------------------------------------------:|
-| <img src="../.media/spin-the-wheel/web.gif" width="300" alt="Spinning the wheel twice, removing a name in between in a browser"> |
+|                                                              Android                                                               |                                                               iOS                                                                |                                                               Web                                                                |
+|:----------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------:|
+| <img src="../.media/spin-the-wheel/android.gif" width="240" alt="Spinning the wheel twice, removing a name in between on Android"> | <img src="../.media/spin-the-wheel/ios.gif" width="240" alt="Spinning the wheel twice, removing a name in between on an iPhone"> | <img src="../.media/spin-the-wheel/web.gif" width="240" alt="Spinning the wheel twice, removing a name in between in a browser"> |
 
 The same code runs on macOS, Windows and Linux too. On iOS and macOS, flet-audio can't play bytes yet, so the app
 writes each sound to a `.wav` file there first.

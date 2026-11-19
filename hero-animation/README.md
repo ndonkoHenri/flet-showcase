@@ -14,13 +14,9 @@ into the full-width photo at the top of the next page. Go back and it shrinks ho
   [`max_extent`](https://flet.dev/docs/controls/gridview#flet.GridView.max_extent): two columns on a phone, more on a wider window.
 - The eight photos ship with the app in `assets/`, so it works offline.
 
-|                                                  Android                                                  |                                                 iOS                                                 |
-|:---------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------:|
-| <img src="../.media/hero-animation/android.gif" width="240" alt="Opening two photos and going back on Android"> | <img src="../.media/hero-animation/ios.gif" width="240" alt="Opening two photos and going back on an iPhone"> |
-
-|                                     Web                                     |
-|:---------------------------------------------------------------------------:|
-| <img src="../.media/hero-animation/web.gif" width="400" alt="Opening two photos and going back in a browser"> |
+|                                                     Android                                                     |                                                      iOS                                                      |                                                      Web                                                      |
+|:---------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------:|
+| <img src="../.media/hero-animation/android.gif" width="240" alt="Opening two photos and going back on Android"> | <img src="../.media/hero-animation/ios.gif" width="240" alt="Opening two photos and going back on an iPhone"> | <img src="../.media/hero-animation/web.gif" width="320" alt="Opening two photos and going back in a browser"> |
 
 The same code runs on macOS, Windows and Linux too. Photos from Wikimedia Commons, CC0 (originally on Unsplash):
 *Road along the fjord* by Danny Froese, *Clouds mirrored in a mountain lake* by Ales Krivec, *Polar lights over dark

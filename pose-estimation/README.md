@@ -20,13 +20,9 @@ on top and measures the angle at each elbow and knee. It all runs on the device,
   MoveNet works best when one person fills most of the photo.
 - The model runs in a thread (`asyncio.to_thread`), so the app stays responsive while it works.
 
-|                                                            Android                                                            |                                                           iOS                                                            |
-|:-----------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------:|
-| <img src="../.media/pose-estimation/android.gif" width="240" alt="Reading the pose in three photos and a picked one on Android"> | <img src="../.media/pose-estimation/ios.gif" width="240" alt="Reading the pose in three photos and a picked one on an iPhone"> |
-
-|                                                         Web                                                          |
-|:--------------------------------------------------------------------------------------------------------------------:|
-| <img src="../.media/pose-estimation/web.gif" width="400" alt="Reading the pose in three photos and a picked one in a browser"> |
+|                                                             Android                                                              |                                                              iOS                                                               |                                                              Web                                                               |
+|:--------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------:|
+| <img src="../.media/pose-estimation/android.gif" width="240" alt="Reading the pose in three photos and a picked one on Android"> | <img src="../.media/pose-estimation/ios.gif" width="240" alt="Reading the pose in three photos and a picked one on an iPhone"> | <img src="../.media/pose-estimation/web.gif" width="240" alt="Reading the pose in three photos and a picked one in a browser"> |
 
 The same code runs on macOS, Windows and Linux too. Photos from Wikimedia Commons (CC0): *Alfresco Ballet 9* by
 AlfrescoBallet, *Yoga in the beach* by bady qb, *Yoga CDMX DSC0844* by Gobierno CDMX. MoveNet is Apache-2.0.

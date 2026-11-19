@@ -26,13 +26,9 @@ the link. No server, no upload.
   file's [`bytes`](https://flet.dev/docs/types/filepickerfile#flet.FilePickerFile.bytes) on every platform. Big photos
   are scaled down to 1600 px first, and turned upright from their EXIF data.
 
-|                                                         Android                                                          |                                                         iOS                                                         |
-|:------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------:|
-| <img src="../.media/barcode-scanner/android.gif" width="240" alt="Reading a barcode and a QR code in two photos on Android"> | <img src="../.media/barcode-scanner/ios.gif" width="240" alt="Reading a barcode and a QR code in two photos on an iPhone"> |
-
-|                                                       Web                                                        |
-|:----------------------------------------------------------------------------------------------------------------:|
-| <img src="../.media/barcode-scanner/web.gif" width="400" alt="Reading a barcode and a QR code in two photos in a browser"> |
+|                                                           Android                                                            |                                                            iOS                                                             |                                                            Web                                                             |
+|:----------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------:|
+| <img src="../.media/barcode-scanner/android.gif" width="240" alt="Reading a barcode and a QR code in two photos on Android"> | <img src="../.media/barcode-scanner/ios.gif" width="240" alt="Reading a barcode and a QR code in two photos on an iPhone"> | <img src="../.media/barcode-scanner/web.gif" width="240" alt="Reading a barcode and a QR code in two photos in a browser"> |
 
 The same code runs on macOS, Windows and Linux too. The sample photo was made for this app: a made-up coffee box on
 *Weatherworn top of wooden table* by W.carter (Wikimedia Commons, CC0). Its barcode is an in-store-only number

@@ -26,13 +26,9 @@ no server, so it works offline and the photos stay on the phone.
   ([`with_data`](https://flet.dev/docs/types/pickfiles#flet.PickFiles.with_data)), on every platform.
 - The model runs in a thread (`asyncio.to_thread`), so the app stays responsive while it works.
 
-|                                                         Android                                                          |                                                         iOS                                                         |
-|:------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------:|
-| <img src="../.media/photo-labels/android.gif" width="240" alt="Labeling three photos and a picked one on Android"> | <img src="../.media/photo-labels/ios.gif" width="240" alt="Labeling three photos and a picked one on an iPhone"> |
-
-|                                                       Web                                                        |
-|:----------------------------------------------------------------------------------------------------------------:|
-| <img src="../.media/photo-labels/web.gif" width="400" alt="Labeling two photos and a picked one in a browser"> |
+|                                                      Android                                                       |                                                       iOS                                                        |                                                      Web                                                       |
+|:------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------:|
+| <img src="../.media/photo-labels/android.gif" width="240" alt="Labeling three photos and a picked one on Android"> | <img src="../.media/photo-labels/ios.gif" width="240" alt="Labeling three photos and a picked one on an iPhone"> | <img src="../.media/photo-labels/web.gif" width="240" alt="Labeling two photos and a picked one in a browser"> |
 
 The same code runs on macOS, Windows and Linux too, in a phone-shaped window. MobileNetV2 is Apache-2.0; the labels
 are pytorch/hub's `imagenet_classes.txt` (BSD-3-Clause). Photos from Wikimedia Commons (CC0): *Golden Retriever

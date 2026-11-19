@@ -19,13 +19,9 @@ filling the area under the line, and the totals update as the line grows:
 - **Hover a month** (desktop, web) **or press and hold it** (phone): the tooltip shows both years' values.
 - The round arrow clears the chart.
 
-|                                                       Android                                                        |                                                        iOS                                                         |
-|:--------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------:|
-| <img src="../.media/animated-line-chart/android.gif" width="240" alt="Adding months on Android, then the 2025 line"> | <img src="../.media/animated-line-chart/ios.gif" width="240" alt="Adding months on an iPhone, then the 2025 line"> |
-
-|                                                                     Web                                                                      |
-|:--------------------------------------------------------------------------------------------------------------------------------------------:|
-| <img src="../.media/animated-line-chart/web.gif" width="480" alt="Playing the year in a browser, comparing with 2025 and hovering November"> |
+|                                                       Android                                                        |                                                        iOS                                                         |                                                                     Web                                                                      |
+|:--------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------:|
+| <img src="../.media/animated-line-chart/android.gif" width="240" alt="Adding months on Android, then the 2025 line"> | <img src="../.media/animated-line-chart/ios.gif" width="240" alt="Adding months on an iPhone, then the 2025 line"> | <img src="../.media/animated-line-chart/web.gif" width="320" alt="Playing the year in a browser, comparing with 2025 and hovering November"> |
 
 The same code runs on macOS, Windows and Linux too.
 

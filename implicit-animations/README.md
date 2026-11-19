@@ -29,13 +29,9 @@ grow and change color, fade, spin, slide and zoom. Pick a curve and a duration t
   move nothing by themselves: each box picks up the curve and duration on its next change.
 - **Animate all** sends every box to its end value at once, and **Reset** sends them all back.
 
-|                                                         Android                                                          |                                                         iOS                                                          |
-|:------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------:|
-| <img src="../.media/implicit-animations/android.gif" width="240" alt="Tapping the five cards one by one, then animating them all with a bounce on Android"> | <img src="../.media/implicit-animations/ios.gif" width="240" alt="Tapping the five cards one by one, then animating them all with a bounce on an iPhone"> |
-
-|                                                          Web                                                           |
-|:----------------------------------------------------------------------------------------------------------------------:|
-| <img src="../.media/implicit-animations/web.gif" width="400" alt="Tapping the five cards, resetting, then picking a bounce curve and a longer duration in a browser"> |
+|                                                                           Android                                                                           |                                                                            iOS                                                                            |                                                                                  Web                                                                                  |
+|:-----------------------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| <img src="../.media/implicit-animations/android.gif" width="240" alt="Tapping the five cards one by one, then animating them all with a bounce on Android"> | <img src="../.media/implicit-animations/ios.gif" width="240" alt="Tapping the five cards one by one, then animating them all with a bounce on an iPhone"> | <img src="../.media/implicit-animations/web.gif" width="240" alt="Tapping the five cards, resetting, then picking a bounce curve and a longer duration in a browser"> |
 
 The same code runs on macOS, Windows and Linux too, with a click instead of a tap.
 
