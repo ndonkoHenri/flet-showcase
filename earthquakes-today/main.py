@@ -293,12 +293,6 @@ async def main(page: ft.Page):
         page.update()
         await the_map.move_to(WORLD_CENTER, zoom=WORLD, cancel_ongoing_animations=True)
 
-    async def handle_filter_change(e: ft.Event[ft.SegmentedButton]):
-        await load()
-
-    async def handle_refresh_click(e: ft.Event[ft.IconButton] | ft.Event[ft.Button]):
-        await load()
-
     page.add(
         ft.SafeArea(
             expand=True,
@@ -346,7 +340,7 @@ async def main(page: ft.Page):
                                                 icon_color=RED,
                                                 bgcolor="#FFE9E9",
                                                 tooltip="Refresh",
-                                                on_click=handle_refresh_click,
+                                                on_click=load,
                                             ),
                                             spinner := ft.ProgressRing(
                                                 width=26, height=26, color=RED, visible=False
@@ -363,7 +357,7 @@ async def main(page: ft.Page):
                                     expand=True,
                                     show_selected_icon=False,
                                     selected=["day"],
-                                    on_change=handle_filter_change,
+                                    on_change=load,
                                     segments=[
                                         ft.Segment(value="hour", label="Hour"),
                                         ft.Segment(value="day", label="Day"),
@@ -373,7 +367,7 @@ async def main(page: ft.Page):
                                 magnitude_picker := ft.SegmentedButton(
                                     show_selected_icon=False,
                                     selected=["2.5"],
-                                    on_change=handle_filter_change,
+                                    on_change=load,
                                     segments=[
                                         ft.Segment(value="2.5", label="2.5+"),
                                         ft.Segment(value="4.5", label="4.5+"),
@@ -543,9 +537,7 @@ async def main(page: ft.Page):
                                     message_text := ft.Text(
                                         size=16, color=MUTED, text_align=ft.TextAlign.CENTER
                                     ),
-                                    retry_button := ft.Button(
-                                        "Try again", on_click=handle_refresh_click
-                                    ),
+                                    retry_button := ft.Button("Try again", on_click=load),
                                 ],
                             ),
                         ),

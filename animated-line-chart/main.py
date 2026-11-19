@@ -97,9 +97,6 @@ def main(page: ft.Page):
         point.x, point.y = month, amount
         update_stats()
 
-    async def handle_add_click(e: ft.Event[ft.FilledButton]):
-        await add_month()
-
     async def handle_play_click(e: ft.Event[ft.OutlinedButton]):
         nonlocal playing
         playing = True  # keeps both buttons disabled until the year is complete
@@ -192,7 +189,7 @@ def main(page: ft.Page):
                             wrap=True,
                             controls=[
                                 add_button := ft.FilledButton(
-                                    "Add month", icon=ft.Icons.ADD, on_click=handle_add_click
+                                    "Add month", icon=ft.Icons.ADD, on_click=add_month
                                 ),
                                 play_button := ft.OutlinedButton(
                                     "Play", icon=ft.Icons.PLAY_ARROW, on_click=handle_play_click
