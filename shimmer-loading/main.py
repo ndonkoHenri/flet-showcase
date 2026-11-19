@@ -12,7 +12,7 @@ ARTICLES = [  # (photo in assets/, title, details)
     ("waterfall.jpg", "Where the moss grows", "5 min read · Nature"),
     ("lake.jpg", "Cloud watching", "7 min read · Life"),
 ]
-GREY = ft.Colors.GREY_300
+GRAY = ft.Colors.GREY_300
 DIRECTIONS = {  # where the light sweeps to: the icon of its button
     ft.ShimmerDirection.LTR: ft.Icons.ARROW_FORWARD,
     ft.ShimmerDirection.RTL: ft.Icons.ARROW_BACK,
@@ -25,29 +25,29 @@ CARD_GAP_SECONDS = 0.35  # pause between two cards appearing
 
 
 def bar(width: int, height: int = 14) -> ft.Container:
-    """A rounded grey bar standing in for a line of text."""
-    return ft.Container(width=width, height=height, bgcolor=GREY, border_radius=height / 2)
+    """A rounded gray bar standing in for a line of text."""
+    return ft.Container(width=width, height=height, bgcolor=GRAY, border_radius=height / 2)
 
 
 def skeleton(placeholder: ft.Control) -> ft.Shimmer:
-    """Sweeps a light across grey placeholder shapes."""
-    return ft.Shimmer(base_color=GREY, highlight_color=ft.Colors.GREY_100, content=placeholder)
+    """Sweeps a light across gray placeholder shapes."""
+    return ft.Shimmer(base_color=GRAY, highlight_color=ft.Colors.GREY_100, content=placeholder)
 
 
 def hero_skeleton() -> ft.Shimmer:
-    """The grey stand-in for the top story."""
-    return skeleton(ft.Container(height=190, border_radius=24, bgcolor=GREY))
+    """The gray stand-in for the top story."""
+    return skeleton(ft.Container(height=190, border_radius=24, bgcolor=GRAY))
 
 
 def row_skeleton() -> ft.Shimmer:
-    """The grey stand-in for an article: a square photo and three lines."""
+    """The gray stand-in for an article: a square photo and three lines."""
     return skeleton(
         ft.Container(
             height=96,
             content=ft.Row(
                 spacing=14,
                 controls=[
-                    ft.Container(width=86, height=86, border_radius=18, bgcolor=GREY),
+                    ft.Container(width=86, height=86, border_radius=18, bgcolor=GRAY),
                     ft.Column(
                         spacing=10,
                         alignment=ft.MainAxisAlignment.CENTER,

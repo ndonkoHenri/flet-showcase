@@ -5,7 +5,7 @@ Every earthquake of the last hour, day or week, live from the
 [flet-map](https://flet.dev/docs/controls/map) world map, with a list below, strongest first:
 
 - Each quake is a [`CircleMarker`](https://flet.dev/docs/controls/map/circlemarker) in a
-  [`CircleLayer`](https://flet.dev/docs/controls/map/circlelayer), coloured by magnitude. Its
+  [`CircleLayer`](https://flet.dev/docs/controls/map/circlelayer), colored by magnitude. Its
   [`radius`](https://flet.dev/docs/controls/map/circlemarker#flet_map.CircleMarker.radius) is `magnitude² / 2`
   pixels, so a 6.4 is more than six times the size of a 2.5. The circles pop in weakest first, so the strongest land
   on top.

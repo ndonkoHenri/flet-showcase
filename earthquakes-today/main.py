@@ -110,7 +110,7 @@ def circle(quake: Quake) -> ftm.CircleMarker:
 
 
 def badge(magnitude: float, text: ft.Text | None = None) -> ft.Container:
-    """A coloured box with the magnitude in it (or with `text`, to change later)."""
+    """A colored box with the magnitude in it (or with `text`, to change later)."""
     return ft.Container(
         width=50,
         height=42,

@@ -15,14 +15,14 @@ def money(value: float) -> str:
 
 
 def tip(text: str) -> fch.LineChartDataPointTooltip:
-    """A point's tooltip, in white so it reads on the coloured tooltip box."""
+    """A point's tooltip, in white so it reads on the colored tooltip box."""
     return fch.LineChartDataPointTooltip(
         text=text, text_style=ft.TextStyle(color=ft.Colors.WHITE, weight=ft.FontWeight.BOLD)
     )
 
 
 def stat(label: str, value: ft.Text) -> ft.Container:
-    """A small grey card with a label above a value."""
+    """A small gray card with a label above a value."""
     return ft.Container(
         expand=True,
         padding=ft.Padding.symmetric(vertical=10, horizontal=14),

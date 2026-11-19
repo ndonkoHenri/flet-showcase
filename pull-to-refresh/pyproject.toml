@@ -12,4 +12,4 @@ dev = ["flet-cli==1.1.2", "flet-desktop==1.1.2", "flet-web==1.1.2"]
 
 [tool.flet]
 org = "com.example"
-product = "Pull to Refresh"
+product = "Pull to refresh"

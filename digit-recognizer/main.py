@@ -33,7 +33,7 @@ def train():
 def to_8x8(strokes: list[list[tuple[float, float]]], fill=24, pen=6.0) -> np.ndarray:
     """Shrink the strokes to 8x8 pixels of 0-16, the way the training digits were made.
 
-    The drawing is scaled so its longer side spans `fill` of 32 px, centred in a 32x32
+    The drawing is scaled so its longer side spans `fill` of 32 px, centered in a 32x32
     bitmap with a `pen`-wide nib, then each 4x4 block is counted.
     """
     points = np.array([p for stroke in strokes for p in stroke], float)
@@ -68,12 +68,12 @@ def ink(a: tuple[float, float], b: tuple[float, float]) -> cv.Line:
 
 
 def card(content: ft.Control, expand: bool = False) -> ft.Container:
-    """A rounded grey card around content."""
+    """A rounded gray card around content."""
     return ft.Container(bgcolor=CARD, border_radius=18, padding=12, expand=expand, content=content)
 
 
 def caption(value: str) -> ft.Text:
-    """A small grey title for a card."""
+    """A small gray title for a card."""
     return ft.Text(value, size=13, color=MUTED, weight=ft.FontWeight.W_600)
 
 

@@ -42,7 +42,7 @@ def touched(index: int | None, event_type: fch.ChartEventType, current: int | No
 
 
 def tab(name: str, on_click: ft.ControlEventHandler[ft.Container]) -> ft.Container:
-    """A region tab; show() colours the selected one."""
+    """A region tab; show() colors the selected one."""
     return ft.Container(
         content=ft.Text(name, size=16, weight=ft.FontWeight.W_700),
         data=name,
@@ -61,14 +61,14 @@ def day_bar() -> fch.BarChartRod:
         to_y=0,
         width=24,
         border_radius=ft.BorderRadius.only(top_left=8, top_right=8),
-        # The grey track behind the bar also makes the whole column easy to tap.
+        # The gray track behind the bar also makes the whole column easy to tap.
         bg_to_y=100,
         bgcolor=ft.Colors.GREY_100,
     )
 
 
 def legend_row(name: str, color: ft.ColorValue, share: int, selected: bool) -> ft.Row:
-    """A channel's colour dot, name and share, in bold when its slice is highlighted."""
+    """A channel's color dot, name and share, in bold when its slice is highlighted."""
     weight = ft.FontWeight.W_800 if selected else ft.FontWeight.NORMAL
     return ft.Row(
         spacing=10,

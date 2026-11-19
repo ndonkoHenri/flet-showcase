@@ -1,10 +1,10 @@
 # Shimmer loading
 
-A reading feed that shows grey placeholder shapes with a light sweeping across them while its articles load, then
+A reading feed that shows gray placeholder shapes with a light sweeping across them while its articles load, then
 fades in the real cards one after another. Placeholders like these tell people that content is on its way and
 what shape it will take.
 
-- Each placeholder is a few grey boxes wrapped in a [`Shimmer`](https://flet.dev/docs/controls/shimmer): its
+- Each placeholder is a few gray boxes wrapped in a [`Shimmer`](https://flet.dev/docs/controls/shimmer): its
   [`base_color`](https://flet.dev/docs/controls/shimmer#flet.Shimmer.base_color) and
   [`highlight_color`](https://flet.dev/docs/controls/shimmer#flet.Shimmer.highlight_color) make the sweep.
 - Every place in the feed is an [`AnimatedSwitcher`](https://flet.dev/docs/controls/animatedswitcher). When an

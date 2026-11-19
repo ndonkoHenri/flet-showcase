@@ -229,7 +229,7 @@ async def main(page: ft.Page):
             file_type=ft.FilePickerFileType.IMAGE,
             with_data=True,  # the bytes, on every platform (the web has no paths)
         )
-        if not files:  # cancelled
+        if not files:  # canceled
             return
         try:
             photo, jpg = await asyncio.to_thread(open_photo, files[0].bytes)
