@@ -17,6 +17,7 @@ running and links to the docs for everything it uses.
 | <img src=".media/hero-animation/thumb.png" width="120" alt="">       | [Hero animation](hero-animation)                    | A photo flies from a grid into its own page and back                    |
 | <img src=".media/implicit-animations/thumb.png" width="120" alt="">  | [Implicit animations](implicit-animations)          | Size, color, fade, spin, slide and zoom that animate with your curve    |
 | <img src=".media/iss-tracker/thumb.png" width="120" alt="">          | [ISS tracker](iss-tracker)                          | The space station live on a map, every second, with its trail           |
+| <img src=".media/lottie-onboarding/thumb.png" width="120" alt="">    | [Lottie onboarding](lottie-onboarding)              | Onboarding with four Lottie animations from URLs, swipes and page dots  |
 | <img src=".media/notification-actions/thumb.png" width="120" alt=""> | [Notification action buttons](notification-actions) | Buttons in a notification that call your Python code                    |
 | <img src=".media/photo-labels/thumb.png" width="120" alt="">         | [Photo labels](photo-labels)                        | MobileNetV2 names what's in a photo, on device, top 3 as growing bars   |
 | <img src=".media/pose-estimation/thumb.png" width="120" alt="">      | [Pose estimation](pose-estimation)                  | An on-device AI model draws a skeleton on people in photos              |
