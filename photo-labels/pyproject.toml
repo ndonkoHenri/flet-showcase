@@ -1,0 +1,18 @@
+[project]
+name = "photo-labels"
+version = "1.0.0"
+description = "Name what's in a photo with MobileNetV2 on onnxruntime, top 3 labels as animated bars, on device."
+requires-python = ">=3.11"
+dependencies = [
+    "flet==1.1.2",
+    "numpy==2.4.6",
+    "onnxruntime==1.27.0",
+    "opencv-python==5.0.0.93"
+]
+
+[dependency-groups]
+dev = ["flet-cli==1.1.2", "flet-desktop==1.1.2", "flet-web==1.1.2"]
+
+[tool.flet]
+org = "com.example"
+product = "Photo labels"

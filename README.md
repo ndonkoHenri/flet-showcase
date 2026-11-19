@@ -18,6 +18,7 @@ running and links to the docs for everything it uses.
 | <img src=".media/implicit-animations/thumb.png" width="120" alt="">  | [Implicit animations](implicit-animations)          | Size, color, fade, spin, slide and zoom that animate with your curve    |
 | <img src=".media/iss-tracker/thumb.png" width="120" alt="">          | [ISS tracker](iss-tracker)                          | The space station live on a map, every second, with its trail           |
 | <img src=".media/notification-actions/thumb.png" width="120" alt=""> | [Notification action buttons](notification-actions) | Buttons in a notification that call your Python code                    |
+| <img src=".media/photo-labels/thumb.png" width="120" alt="">         | [Photo labels](photo-labels)                        | MobileNetV2 names what's in a photo, on device, top 3 as growing bars   |
 | <img src=".media/pose-estimation/thumb.png" width="120" alt="">      | [Pose estimation](pose-estimation)                  | An on-device AI model draws a skeleton on people in photos              |
 | <img src=".media/pull-to-refresh/thumb.png" width="120" alt="">      | [Pull to refresh](pull-to-refresh)                  | Pull a list down to load new items; a Refresh button on desktop and web |
 | <img src=".media/shimmer-loading/thumb.png" width="120" alt="">      | [Shimmer loading](shimmer-loading)                  | Shimmering placeholders while a feed loads, then the real cards fade in |
