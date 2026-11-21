@@ -1,0 +1,15 @@
+[project]
+name = "drawing-canvas"
+version = "1.0.0"
+description = "Draw with a finger or the mouse on a canvas, with colors, brush sizes, undo and clear."
+requires-python = ">=3.10"
+dependencies = [
+    "flet==1.1.2"
+]
+
+[dependency-groups]
+dev = ["flet-cli==1.1.2", "flet-desktop==1.1.2", "flet-web==1.1.2"]
+
+[tool.flet]
+org = "com.example"
+product = "Sketch"
