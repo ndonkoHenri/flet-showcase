@@ -1,0 +1,18 @@
+[project]
+name = "video-playlist"
+version = "1.0.0"
+description = "A video player with a playlist: skip the intro, switch videos, and the list follows what's playing."
+requires-python = ">=3.10"
+dependencies = [
+    "flet==1.1.2",
+    "flet-video==1.1.2"
+]
+
+[dependency-groups]
+dev = ["flet-cli==1.1.2", "flet-desktop==1.1.2", "flet-web==1.1.2"]
+
+[tool.flet]
+org = "com.example"
+product = "Video playlist"
+# On Linux, only the full desktop client includes the video player.
+desktop_flavor = "full"

@@ -32,6 +32,7 @@ running and links to the docs for everything it uses.
 | <img src=".media/spin-the-wheel/thumb.png" width="120" alt="">       | [Spin the wheel](spin-the-wheel)                    | An animated wheel of names, with ticks made in Python with NumPy        |
 | <img src=".media/swipe-to-dismiss/thumb.png" width="120" alt="">     | [Swipe to dismiss](swipe-to-dismiss)                | Swipe emails away to archive or delete them, with undo                  |
 | <img src=".media/tilt-game/thumb.png" width="120" alt="">            | [Tilt game](tilt-game)                              | Tilt the phone to roll a ball over the stars; arrow keys on desktop     |
+| <img src=".media/video-playlist/thumb.png" width="120" alt="">       | [Video playlist](video-playlist)                    | A video player whose playlist follows what's playing; skip intros       |
 
 ## Run an app
 
