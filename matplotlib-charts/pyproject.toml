@@ -1,0 +1,22 @@
+[project]
+name = "matplotlib-charts"
+version = "1.0.0"
+description = "A matplotlib figure of a damped wave inside a Flet app, redrawn as you drag sliders, with zoom."
+requires-python = ">=3.11"
+dependencies = [
+    "flet==1.1.2",
+    "flet-charts==1.1.2",
+    "matplotlib==3.10.9",
+    "numpy==2.4.6"
+]
+
+[dependency-groups]
+dev = ["flet-cli==1.1.2", "flet-desktop==1.1.2", "flet-web==1.1.2"]
+
+[tool.flet]
+org = "com.example"
+product = "Damped wave"
+
+# matplotlib reads its data files (fonts, matplotlibrc) from disk, so on Android it ships unzipped.
+[tool.flet.android]
+extract_packages = ["matplotlib"]
