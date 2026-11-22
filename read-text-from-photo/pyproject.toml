@@ -1,0 +1,18 @@
+[project]
+name = "read-text-from-photo"
+version = "1.0.0"
+description = "Find and read the text in a photo with two PP-OCR models on onnxruntime, on device."
+requires-python = ">=3.11"
+dependencies = [
+    "flet==1.1.2",
+    "numpy==2.4.6",
+    "onnxruntime==1.27.0",
+    "opencv-python==5.0.0.93"
+]
+
+[dependency-groups]
+dev = ["flet-cli==1.1.2", "flet-desktop==1.1.2", "flet-web==1.1.2"]
+
+[tool.flet]
+org = "com.example"
+product = "Read text"
