@@ -1,2 +1,4 @@
 # One line length for every app: short calls stay on one line instead of being split by the 88 default.
 line-length = 100
+# Each app folder is its own source root, so an app's own modules (sky.py, rag.py) sort as first-party imports.
+src = ["*"]
