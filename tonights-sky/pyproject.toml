@@ -1,0 +1,37 @@
+[project]
+name = "tonights-sky"
+version = "1.0.0"
+description = "Tonight's sunset, Moon phase and visible planets for where you are, worked out with astropy."
+requires-python = ">=3.11"
+dependencies = [
+    "flet==1.1.2",
+    "flet-geolocator==1.1.2",
+    "astropy==8.0.0",
+    "pyerfa==2.0.1.5",
+    "numpy==2.4.6",
+    "tzdata==2026.6"
+]
+
+[dependency-groups]
+dev = ["flet-cli==1.1.2", "flet-desktop==1.1.2", "flet-web==1.1.2"]
+
+[tool.flet]
+org = "com.example"
+product = "Tonight's sky"
+
+[tool.flet.android]
+# astropy reads data files next to its modules, so it must not stay inside sitepackages.zip.
+extract_packages = ["astropy", "astropy_iers_data"]
+
+[tool.flet.android.permission]
+"android.permission.ACCESS_FINE_LOCATION" = true
+"android.permission.ACCESS_COARSE_LOCATION" = true
+
+[tool.flet.ios.info]
+NSLocationWhenInUseUsageDescription = "Tonight's sky works out the night sky where you are."
+
+[tool.flet.macos.info]
+NSLocationUsageDescription = "Tonight's sky works out the night sky where you are."
+
+[tool.flet.macos.entitlement]
+"com.apple.security.personal-information.location" = true
