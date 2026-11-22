@@ -15,6 +15,7 @@ running and links to the docs for everything it uses.
 | <img src=".media/digit-recognizer/thumb.png" width="120" alt="">     | [Digit recognizer](digit-recognizer)                | Draw a digit; scikit-learn trains on the device and guesses it          |
 | <img src=".media/dodge-game/thumb.png" width="120" alt="">           | [Dodge game](dodge-game)                            | An arcade game: drag to dodge falling blocks, with a 30 fps game loop   |
 | <img src=".media/drawing-canvas/thumb.png" width="120" alt="">       | [Drawing canvas](drawing-canvas)                    | Draw with a finger or mouse: colors, brush sizes, undo and recolor      |
+| <img src=".media/drum-pad/thumb.png" width="120" alt="">             | [Drum pad](drum-pad)                                | Eight drum sounds made with NumPy, a beat on a loop and a tempo control |
 | <img src=".media/earthquakes-today/thumb.png" width="120" alt="">    | [Earthquakes today](earthquakes-today)              | The USGS live quake feed on a map: filter, tap a quake for details      |
 | <img src=".media/game-of-life/thumb.png" width="120" alt="">         | [Game of Life](game-of-life)                        | Conway's Game of Life in NumPy, drawn with Canvas Points; tap and Play  |
 | <img src=".media/hero-animation/thumb.png" width="120" alt="">       | [Hero animation](hero-animation)                    | A photo flies from a grid into its own page and back                    |
