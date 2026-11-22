@@ -1,0 +1,18 @@
+[project]
+name = "cut-out-background"
+version = "1.0.0"
+description = "Cut the subject out of a photo with U²-Net on device and put it on a new background."
+requires-python = ">=3.11"
+dependencies = [
+    "flet==1.1.2",
+    "numpy==2.4.6",
+    "onnxruntime==1.27.0",
+    "opencv-python==5.0.0.93"
+]
+
+[dependency-groups]
+dev = ["flet-cli==1.1.2", "flet-desktop==1.1.2", "flet-web==1.1.2"]
+
+[tool.flet]
+org = "com.example"
+product = "Cut-out"
