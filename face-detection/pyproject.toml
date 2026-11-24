@@ -1,0 +1,17 @@
+[project]
+name = "face-detection"
+version = "1.0.0"
+description = "Find every face in a photo with OpenCV's YuNet detector, box it and blur it, on device."
+requires-python = ">=3.11"
+dependencies = [
+    "flet==1.1.2",
+    "numpy==2.4.6",
+    "opencv-python==5.0.0.93"
+]
+
+[dependency-groups]
+dev = ["flet-cli==1.1.2", "flet-desktop==1.1.2", "flet-web==1.1.2"]
+
+[tool.flet]
+org = "com.example"
+product = "Face detection"

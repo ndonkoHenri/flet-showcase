@@ -18,6 +18,7 @@ running and links to the docs for everything it uses.
 | <img src=".media/drawing-canvas/thumb.png" width="120" alt="">       | [Drawing canvas](drawing-canvas)                    | Draw with a finger or mouse: colors, brush sizes, undo and recolor      |
 | <img src=".media/drum-pad/thumb.png" width="120" alt="">             | [Drum pad](drum-pad)                                | Eight drum sounds made with NumPy, a beat on a loop and a tempo control |
 | <img src=".media/earthquakes-today/thumb.png" width="120" alt="">    | [Earthquakes today](earthquakes-today)              | The USGS live quake feed on a map: filter, tap a quake for details      |
+| <img src=".media/face-detection/thumb.png" width="120" alt="">       | [Face detection](face-detection)                    | OpenCV's YuNet boxes every face in a photo, then blurs them, on device  |
 | <img src=".media/game-of-life/thumb.png" width="120" alt="">         | [Game of Life](game-of-life)                        | Conway's Game of Life in NumPy, drawn with Canvas Points; tap and Play  |
 | <img src=".media/hero-animation/thumb.png" width="120" alt="">       | [Hero animation](hero-animation)                    | A photo flies from a grid into its own page and back                    |
 | <img src=".media/implicit-animations/thumb.png" width="120" alt="">  | [Implicit animations](implicit-animations)          | Size, color, fade, spin, slide and zoom that animate with your curve    |
