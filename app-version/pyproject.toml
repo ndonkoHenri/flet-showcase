@@ -1,0 +1,16 @@
+[project]
+name = "app-version"
+version = "1.0.0"
+description = "An About screen that reads the app's own name, version, build number and device details."
+requires-python = ">=3.10"
+dependencies = [
+    "flet==1.1.2"
+]
+
+[dependency-groups]
+dev = ["flet-cli==1.1.2", "flet-desktop==1.1.2", "flet-web==1.1.2"]
+
+[tool.flet]
+org = "com.example"
+product = "About app"
+build_number = 1

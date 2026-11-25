@@ -9,6 +9,7 @@ running and links to the docs for everything it uses.
 |                                                                      | App                                                 | What it shows                                                           |
 |----------------------------------------------------------------------|-----------------------------------------------------|-------------------------------------------------------------------------|
 | <img src=".media/animated-line-chart/thumb.png" width="120" alt="">  | [Animated line chart](animated-line-chart)          | A line chart that grows month by month, with a dashed comparison line   |
+| <img src=".media/app-version/thumb.png" width="120" alt="">          | [App version](app-version)                          | An About screen that reads its own version, build and device info       |
 | <img src=".media/bar-and-pie-charts/thumb.png" width="120" alt="">   | [Bar and pie charts](bar-and-pie-charts)            | Bar and pie charts that glide to new data; tap a bar or a slice         |
 | <img src=".media/barcode-scanner/thumb.png" width="120" alt="">      | [Barcode scanner](barcode-scanner)                  | pyzbar reads barcodes and QR codes in a photo; copy or open each one    |
 | <img src=".media/cut-out-background/thumb.png" width="120" alt="">   | [Cut out the background](cut-out-background)        | On-device AI cuts the subject out of a photo onto a new color           |
