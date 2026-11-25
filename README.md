@@ -27,6 +27,7 @@ running and links to the docs for everything it uses.
 | <img src=".media/map-tour/thumb.png" width="120" alt="">             | [Map tour](map-tour)                                | Pins, a growing route and flights between stops on an OpenStreetMap     |
 | <img src=".media/matplotlib-charts/thumb.png" width="120" alt="">    | [Matplotlib charts](matplotlib-charts)              | A live matplotlib figure that redraws as you drag sliders, with zoom    |
 | <img src=".media/notification-actions/thumb.png" width="120" alt=""> | [Notification action buttons](notification-actions) | Buttons in a notification that call your Python code                    |
+| <img src=".media/open-links/thumb.png" width="120" alt="">           | [Open links](open-links)                            | Open links in-app or in the browser, and check which ones can open      |
 | <img src=".media/photo-filters/thumb.png" width="120" alt="">        | [Photo filters](photo-filters)                      | Pencil, cartoon, neon and vintage filters with OpenCV, on the phone     |
 | <img src=".media/photo-labels/thumb.png" width="120" alt="">         | [Photo labels](photo-labels)                        | MobileNetV2 names what's in a photo, on device, top 3 as growing bars   |
 | <img src=".media/pose-estimation/thumb.png" width="120" alt="">      | [Pose estimation](pose-estimation)                  | An on-device AI model draws a skeleton on people in photos              |

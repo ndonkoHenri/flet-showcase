@@ -1,0 +1,48 @@
+[project]
+name = "open-links"
+version = "1.0.0"
+description = "Open a web page in the app or in the browser, hand mail, phone and map links to the system, and ask which links can be opened."
+requires-python = ">=3.10"
+dependencies = [
+    "flet==1.1.2"
+]
+
+[dependency-groups]
+dev = ["flet-cli==1.1.2", "flet-desktop==1.1.2", "flet-web==1.1.2"]
+
+[tool.flet]
+org = "com.example"
+product = "Open links"
+
+# Android 11+ tells the app about other apps only for what it declares here: can_launch_url()
+# for each scheme it checks, and Custom Tabs for the in-app browser view.
+[[tool.flet.android.queries.intent]]
+action = "android.support.customtabs.action.CustomTabsService"
+
+[[tool.flet.android.queries.intent]]
+action = "android.intent.action.VIEW"
+data = { scheme = "https" }
+
+[[tool.flet.android.queries.intent]]
+action = "android.intent.action.VIEW"
+data = { scheme = "mailto" }
+
+[[tool.flet.android.queries.intent]]
+action = "android.intent.action.VIEW"
+data = { scheme = "tel" }
+
+[[tool.flet.android.queries.intent]]
+action = "android.intent.action.VIEW"
+data = { scheme = "geo" }
+
+[[tool.flet.android.queries.intent]]
+action = "android.intent.action.VIEW"
+data = { scheme = "sms" }
+
+[[tool.flet.android.queries.intent]]
+action = "android.intent.action.VIEW"
+data = { scheme = "whatsapp" }
+
+# iOS answers can_launch_url() only for the schemes listed here.
+[tool.flet.ios.info]
+LSApplicationQueriesSchemes = ["https", "mailto", "tel", "sms", "whatsapp"]
