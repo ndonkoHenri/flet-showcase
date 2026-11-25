@@ -32,6 +32,7 @@ running and links to the docs for everything it uses.
 | <img src=".media/pull-to-refresh/thumb.png" width="120" alt="">      | [Pull to refresh](pull-to-refresh)                  | Pull a list down to load new items; a Refresh button on desktop and web |
 | <img src=".media/read-text-from-photo/thumb.png" width="120" alt=""> | [Read text from a photo](read-text-from-photo)      | Find and read every line of text in a photo with PP-OCR, on device      |
 | <img src=".media/shimmer-loading/thumb.png" width="120" alt="">      | [Shimmer loading](shimmer-loading)                  | Shimmering placeholders while a feed loads, then the real cards fade in |
+| <img src=".media/speed-dial/thumb.png" width="120" alt="">           | [Speed dial](speed-dial)                            | A + button that fans out into labeled actions, with a staggered motion  |
 | <img src=".media/spin-the-wheel/thumb.png" width="120" alt="">       | [Spin the wheel](spin-the-wheel)                    | An animated wheel of names, with ticks made in Python with NumPy        |
 | <img src=".media/swipe-to-dismiss/thumb.png" width="120" alt="">     | [Swipe to dismiss](swipe-to-dismiss)                | Swipe emails away to archive or delete them, with undo                  |
 | <img src=".media/tilt-game/thumb.png" width="120" alt="">            | [Tilt game](tilt-game)                              | Tilt the phone to roll a ball over the stars; arrow keys on desktop     |
