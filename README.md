@@ -23,6 +23,7 @@ running and links to the docs for everything it uses.
 | <img src=".media/implicit-animations/thumb.png" width="120" alt="">  | [Implicit animations](implicit-animations)          | Size, color, fade, spin, slide and zoom that animate with your curve    |
 | <img src=".media/iss-tracker/thumb.png" width="120" alt="">          | [ISS tracker](iss-tracker)                          | The space station live on a map, every second, with its trail           |
 | <img src=".media/lottie-onboarding/thumb.png" width="120" alt="">    | [Lottie onboarding](lottie-onboarding)              | Onboarding with four Lottie animations from URLs, swipes and page dots  |
+| <img src=".media/qr-code-maker/thumb.png" width="120" alt="">        | [Make a QR code](qr-code-maker)                     | A QR code for a link, Wi-Fi or contact, redrawn as you type, with segno |
 | <img src=".media/map-tour/thumb.png" width="120" alt="">             | [Map tour](map-tour)                                | Pins, a growing route and flights between stops on an OpenStreetMap     |
 | <img src=".media/matplotlib-charts/thumb.png" width="120" alt="">    | [Matplotlib charts](matplotlib-charts)              | A live matplotlib figure that redraws as you drag sliders, with zoom    |
 | <img src=".media/notification-actions/thumb.png" width="120" alt=""> | [Notification action buttons](notification-actions) | Buttons in a notification that call your Python code                    |
